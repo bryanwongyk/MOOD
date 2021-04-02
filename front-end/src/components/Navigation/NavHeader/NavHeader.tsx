@@ -1,11 +1,7 @@
 import { FunctionComponent } from "react";
 
 const NavHeader: FunctionComponent = () => {
-    return (
-        <p>
-            Test Nav header
-        </p>
-    )
-}
+  return <nav>Test Nav header</nav>;
+};
 
 export default NavHeader;
