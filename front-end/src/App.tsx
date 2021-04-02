@@ -1,21 +1,21 @@
-import { FunctionComponent, ReactElement } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FunctionComponent, ReactElement } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { Layout } from "./components/Navigation/Layout";
+import { Why } from "./components/pages/Why";
+import { About } from "./components/pages/About";
+import { Player } from "./components/Player";
 
 const App: FunctionComponent = (): ReactElement => {
-	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.tsx</code> and save to reload.
-				</p>
-				<a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-					Learn React
-				</a>
-			</header>
-		</div>
-	);
+  const routes = (
+    <Switch>
+      <Route path="/why" component={Why} />
+      <Route path="/about" component={About} />
+      <Route path="/" exact component={Player} />
+      {/* Redirect any unknown link to the home page */}
+      <Redirect to="/" />
+    </Switch>
+  );
+  return <Layout>{routes}</Layout>;
 };
 
 export default App;
