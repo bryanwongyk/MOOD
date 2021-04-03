@@ -1,9 +1,18 @@
 import { FunctionComponent, ReactElement } from 'react';
+import bp from '../../Theme/breakpoints';
 import { Player } from '../../Player';
+import styled from 'styled-components';
+
+const ActivitiesContainer = styled.div`
+	margin: 0 auto;
+	@media ${bp.sm} {
+		width: 80vw;
+	}
+`;
 
 const Activities: FunctionComponent = (): ReactElement => {
 	return (
-		<>
+		<ActivitiesContainer>
 			<Player />
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
@@ -13,7 +22,7 @@ const Activities: FunctionComponent = (): ReactElement => {
 				amet sodales felis. Duis nunc eros, mattis at dui ac, convallis semper risus. In adipiscing ultrices
 				tellus, in suscipit massa vehicula eu.
 			</p>
-		</>
+		</ActivitiesContainer>
 	);
 };
 
