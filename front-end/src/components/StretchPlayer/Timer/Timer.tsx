@@ -35,7 +35,7 @@ const Timer: FunctionComponent<TimerProps> = ({ initialTime }): ReactElement => 
 		};
 	}, [globalActions, globalState.cardShownId, globalState.lastCardId, globalState.stretchComplete, timeLeft]);
 
-	return <span>{timeLeft} seconds</span>;
+	return <h3>{timeLeft}s</h3>;
 };
 
 export default Timer;

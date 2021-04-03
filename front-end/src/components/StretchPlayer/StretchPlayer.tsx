@@ -35,11 +35,14 @@ const HeaderSubTitle = styled.h2`
 	}
 `;
 
-// const PlayerCurrentVideo = styled.div`
-// 	height: 60vh;
-// 	width: 100%;
-// 	background: grey;
-// `;
+const ExtendedCarousel = styled(Carousel)`
+	max-height: 500px;
+
+	.carousel .slide img {
+		width: auto;
+		max-height: 500px;
+	}
+`;
 
 interface StretchPlayerProps {
 	routine: string;
@@ -78,6 +81,7 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 						id={stretch.id}
 						imgSrc={stretch.imgSrc}
 						imgAlt={stretch.imgDescription}
+						stretchInstructions={stretch.stretchInstructions}
 						timeInterval={stretch.timeTakenMilliseconds}
 					/>
 				);
@@ -119,11 +123,13 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 		<>
 			<Header>
 				<HeaderTitle>Breathe</HeaderTitle>
-				<HeaderSubTitle>Stretch {globalState.cardShownId}</HeaderSubTitle>
+				<HeaderSubTitle>
+					Stretch {globalState.cardShownId}/{globalState.cards.length}
+				</HeaderSubTitle>
 			</Header>
 			{/* <PlayerCurrentVideo />
 			<Deck /> */}
-			<Carousel
+			<ExtendedCarousel
 				axis="horizontal"
 				autoPlay={true}
 				renderThumbs={customRenderThumb}
@@ -136,7 +142,7 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 				onChange={onChange}
 			>
 				{cards}
-			</Carousel>
+			</ExtendedCarousel>
 		</>
 	) : (
 		<Spinner />

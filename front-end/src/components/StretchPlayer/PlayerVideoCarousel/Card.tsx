@@ -1,23 +1,18 @@
 import { FunctionComponent, ReactElement, useContext } from 'react';
-// import theme from '../Theme/theme';
-// import bp from '../Theme/breakpoints';
-import styled from 'styled-components';
 import Timer from '../Timer';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
+import styled from 'styled-components';
 
-const CardItem = ({ timeInterval, children }): ReactElement => <div data-interval={timeInterval}>{children}</div>;
-
-const StyledCardItem = styled(CardItem)`
-	width: 500px;
-	height: 200px;
-	list-style: none;
+const ExtendedOrderedList = styled.ol`
+	text-align: left;
+	display: inline-block;
 `;
 
-const CardImg = ({ id, imgSrc, imgAlt }): JSX.Element => <img id={id} src={imgSrc} alt={imgAlt} />;
-
-const StyledCardImg = styled(CardImg)`
-	height: 50px;
+const ExtendedArticle = styled.article`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `;
 
 interface CardProps {
@@ -25,20 +20,35 @@ interface CardProps {
 	name: string;
 	imgSrc?: string;
 	imgAlt?: string;
+	stretchInstructions: string[];
 	timeInterval: number;
 }
 
-const Card: FunctionComponent<CardProps> = ({ id, name, imgSrc, imgAlt, timeInterval }): ReactElement => {
+const Card: FunctionComponent<CardProps> = ({
+	id,
+	name,
+	imgSrc,
+	imgAlt,
+	stretchInstructions,
+	timeInterval,
+}): ReactElement => {
 	const { globalState } = useContext(GlobalStateContext) as ContextType;
 	const initialTime = Math.floor(timeInterval / 1000);
 	// console.log('initial time', initialTime);
 	const timer = globalState.cardShownId === id ? <Timer initialTime={initialTime} /> : null;
 	return (
-		<StyledCardItem data-interval={timeInterval}>
+		<ExtendedArticle data-interval={timeInterval}>
 			{timer}
-			<h4>{name}</h4>
-			<StyledCardImg id={id} imgSrc={imgSrc} imgAlt={imgAlt} />
-		</StyledCardItem>
+			<h3>{name}</h3>
+			<img key={id} src={imgSrc} alt={imgAlt} />
+			<p>
+				<ExtendedOrderedList>
+					{stretchInstructions.map(instruction => (
+						<li>{instruction}</li>
+					))}
+				</ExtendedOrderedList>
+			</p>
+		</ExtendedArticle>
 	);
 };
 

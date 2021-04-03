@@ -23,7 +23,10 @@ const CompletionCard: FunctionComponent<CompletionCardProps> = ({ timeTaken }): 
 			<h4>Well Done!</h4>
 			<p>
 				You've stretched for {timeTaken} minutes and loosened up!
+				<br />
 				<Button onClick={restartHandler}>Start Again</Button>
+				<br />
+				or select another routine from the explorer!
 			</p>
 		</div>
 	);
