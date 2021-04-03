@@ -10,15 +10,7 @@ module.exports = {
 			jsx: true,
 		},
 	},
-	plugins: [
-		'@typescript-eslint',
-		'react',
-		'jsx-a11y',
-		'prettier',
-		'@emotion',
-		'@emotion/eslint-plugin',
-		'react-hooks',
-	],
+	plugins: ['@typescript-eslint', 'react', 'jsx-a11y', 'prettier', 'react-hooks'],
 	env: {
 		browser: true,
 		jest: true,
