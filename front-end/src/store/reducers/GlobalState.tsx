@@ -1,23 +1,44 @@
 import React, { useReducer } from 'react';
 import { GlobalStateActions as actionTypes } from '../actions';
 import { ContextType } from '../../typings/storetype';
+import Card from '../../components/Player/PlayerVideoCarousel/Card';
 
 interface initialStateType {
-	test: boolean;
+	cards: null | typeof Card;
+	cardIntervals: { [key: string]: number }; //https://stackoverflow.com/questions/47847561/typescript-type-for-object-with-unknown-keys-but-only-numeric-values
+	cardsLoaded: boolean;
+	cardShownId: null | number;
+	lastCardId: null | number;
 }
 
 const initialState: initialStateType = {
-	test: false,
+	cards: null,
+	cardIntervals: {},
+	cardsLoaded: false,
+	cardShownId: null,
+	lastCardId: null,
 };
 
 const GlobalStateContext = React.createContext<ContextType | null>(null);
 
 const reducer = (state, action): any => {
 	switch (action.type) {
-		case actionTypes.TEST_ACTION:
-			console.log('TEST_ACTION executed');
+		case actionTypes.SET_CARDS:
 			return {
 				...state,
+				cards: action.cards,
+				cardIntervals: action.cardIntervals,
+				cardsLoaded: action.cardsLoaded,
+			};
+		case actionTypes.SET_CARD_SHOWN_ID:
+			return {
+				...state,
+				cardShownId: action.cardShownId,
+			};
+		case actionTypes.SET_LAST_CARD_ID:
+			return {
+				...state,
+				lastCardId: action.lastCardId,
 			};
 		default: {
 			console.error(`Unhandled action type: ${action.type}`);
@@ -30,8 +51,25 @@ const GlobalStateProvider = ({ children }): React.ReactElement => {
 	const [globalState, dispatch] = useReducer(reducer, initialState);
 
 	const globalActions = {
-		testAction: () => {
-			dispatch({ type: actionTypes.TEST_ACTION });
+		setCards: (cards, cardIntervals, cardsLoaded) => {
+			dispatch({
+				type: actionTypes.SET_CARDS,
+				cards: cards,
+				cardIntervals: cardIntervals,
+				cardsLoaded: cardsLoaded,
+			});
+		},
+		setCardShown: cardShownId => {
+			dispatch({
+				type: actionTypes.SET_CARD_SHOWN_ID,
+				cardShownId: cardShownId,
+			});
+		},
+		setLastCardId: lastCardId => {
+			dispatch({
+				type: actionTypes.SET_LAST_CARD_ID,
+				lastCardId: lastCardId,
+			});
 		},
 	};
 

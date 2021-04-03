@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, ReactElement, useState, useContext, useEffect } from 'react';
 import theme from '../Theme/theme';
 import bp from '../Theme/breakpoints';
 import styled from 'styled-components';
@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import data from './routineRawData';
-
+import { ContextType } from '../../typings/storetype';
+import { GlobalStateContext } from '../../store/reducers';
 import Card from './PlayerVideoCarousel/Card';
 
 const Header = styled.div`
@@ -40,33 +41,76 @@ const HeaderSubTitle = styled.h2`
 
 const Player: FunctionComponent = (): ReactElement => {
 	// TODO: get the routine that the user has selected from context (based on selector).
+	const { globalActions, globalState } = useContext(GlobalStateContext) as ContextType;
 
 	// for now, assume they have picked sample 'Breathe'
-	console.log(data['Breathe']);
+	// stretch ids always begin at 1
+	const [currentStretch, setCurrentStretch] = useState(1);
+	// const [completedRoutine, setCompletedRoutine] = useState(false);
+
+	const [interval, setInterval] = useState(globalState.cardIntervals[currentStretch]);
 
 	// iterate through the stretches in the given routine
-	const cards = data['Breathe']['stretches'].map((stretch, index) => {
-		// Return a card
-		return <Card name={stretch.name} id={index} imgSrc={stretch.imgSrc} imgAlt={stretch.imgDescription} />;
-	});
-	// const cards = [
-	// 	<Card name="Stretch 1" id={1} imgSrc={stretchSample} />,
-	// 	<Card name="Stretch 2" id={2} imgSrc={stretchSample} />,
-	// 	<Card name="Stretch 3" id={3} imgSrc={stretchSample} />,
-	// 	<Card name="Stretch 4" id={4} imgSrc={stretchSample} />,
-	// ];
+	const currentRoutineData = data['Breathe']['stretches'];
+	// avoid cards from being re-calculated unless they change.
+	// this gets re-rendered everytime the stretch gets changed.. move this to global state
+	useEffect(() => {
+		if (!globalState.cardsLoaded) {
+			const cardIntervals = {};
+			const cardIds: number[] = [];
+			const cards = currentRoutineData.map(stretch => {
+				// store the time for each stretch
+				cardIntervals[stretch.id] = stretch.timeTakenMilliseconds;
+				cardIds.push(stretch.id);
+				console.log(stretch.timeTakenMilliseconds);
+				// Return a card
+				return (
+					<Card
+						name={stretch.name}
+						key={stretch.id}
+						id={stretch.id}
+						imgSrc={stretch.imgSrc}
+						imgAlt={stretch.imgDescription}
+						timeInterval={stretch.timeTakenMilliseconds}
+					/>
+				);
+			});
+			globalActions.setCards(cards, cardIntervals, true);
+			setInterval(cardIntervals[currentStretch]);
+			globalActions.setCardShown(currentStretch);
+			globalActions.setLastCardId(cardIds[cardIds.length - 1]);
+		}
+	}, [currentRoutineData, currentStretch, globalActions, globalState.cardsLoaded]);
 
+	// https://stackoverflow.com/questions/62760233/how-to-add-a-video-to-react-responsive-carousel-npm-package
 	const customRenderThumb = (): JSX.Element[] =>
-		data['Breathe']['stretches'].map((stretch, index) => {
-			return <img key={index} src={stretch.imgSrc} alt={stretch.imgDescription} />;
+		data['Breathe']['stretches'].map(stretch => {
+			return <img key={stretch.id} src={stretch.imgSrc} alt={stretch.imgDescription} />;
 		});
 
-	return (
+	// Set different timer intervals for each stretch
+	//https://stackoverflow.com/questions/61451388/is-there-a-way-to-put-a-different-time-interval-for-each-slide-in-react-responsi
+	// the initial state should be the interval for the first stretch
+	console.log('interval: ', interval);
+	const onChange = (_, item): void => {
+		setCurrentStretch(item.props.id);
+		// const newInterval = globalState.cardIntervals[currentStretch]
+		console.log(item.props);
+		globalActions.setCardShown(item.props.id);
+		setInterval(item.props.timeInterval);
+	};
+	// console.log('currentStretch:', currentStretch);
+	// console.log('currentInterval', interval);
+	// console.log('globalInterval', globalState.cardIntervals);
+
+	// let timer = !!interval ? <Timer initialTime={interval} /> : null;
+	// only show content once the first card time is found
+	const cards = globalState.cards;
+	const content = !!interval ? (
 		<>
 			<Header>
 				<HeaderTitle>Breathe</HeaderTitle>
-				<HeaderSubTitle> 3s </HeaderSubTitle>
-				<HeaderSubTitle>Stretch 1/14</HeaderSubTitle>
+				<HeaderSubTitle>Stretch {globalState.cardShownId}</HeaderSubTitle>
 			</Header>
 			{/* <PlayerCurrentVideo />
 			<Deck /> */}
@@ -75,14 +119,20 @@ const Player: FunctionComponent = (): ReactElement => {
 				autoPlay={true}
 				showThumbs={true}
 				renderThumbs={customRenderThumb}
+				interval={interval}
 				showIndicators={false}
 				showStatus={false}
 				showArrows={false}
+				onChange={onChange}
 			>
 				{cards}
 			</Carousel>
 		</>
+	) : (
+		<div>'loading...'</div>
 	);
+
+	return content;
 };
 
 export default Player;

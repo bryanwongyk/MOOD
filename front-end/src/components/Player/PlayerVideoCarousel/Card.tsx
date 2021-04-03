@@ -1,9 +1,12 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement, useContext } from 'react';
 // import theme from '../Theme/theme';
 // import bp from '../Theme/breakpoints';
 import styled from 'styled-components';
+import Timer from '../Timer';
+import { ContextType } from '../../../typings/storetype';
+import { GlobalStateContext } from '../../../store/reducers';
 
-const CardItem = ({ key, children }): ReactElement => <div key={key}>{children}</div>;
+const CardItem = ({ timeInterval, children }): ReactElement => <div data-interval={timeInterval}>{children}</div>;
 
 const StyledCardItem = styled(CardItem)`
 	width: 500px;
@@ -11,24 +14,30 @@ const StyledCardItem = styled(CardItem)`
 	list-style: none;
 `;
 
-const CardImg = ({ imgSrc, imgAlt, key }): JSX.Element => <img key={key} src={imgSrc} alt={imgAlt} />;
+const CardImg = ({ id, imgSrc, imgAlt }): JSX.Element => <img id={id} src={imgSrc} alt={imgAlt} />;
 
 const StyledCardImg = styled(CardImg)`
 	height: 50px;
 `;
 
 interface CardProps {
-	name: string;
 	id: number;
+	name: string;
 	imgSrc: string;
 	imgAlt: string;
+	timeInterval: number;
 }
 
-const Card: FunctionComponent<CardProps> = ({ name, imgSrc, id, imgAlt }): ReactElement => {
+const Card: FunctionComponent<CardProps> = ({ id, name, imgSrc, imgAlt, timeInterval }): ReactElement => {
+	const { globalState } = useContext(GlobalStateContext) as ContextType;
+	const initialTime = Math.floor(timeInterval / 1000);
+	console.log('initial time', initialTime);
+	const timer = globalState.cardShownId === id ? <Timer initialTime={initialTime} /> : null;
 	return (
-		<StyledCardItem key={id}>
+		<StyledCardItem data-interval={timeInterval}>
+			{timer}
 			<h4>{name}</h4>
-			<StyledCardImg imgSrc={imgSrc} imgAlt={imgAlt} key={id} />
+			<StyledCardImg id={id} imgSrc={imgSrc} imgAlt={imgAlt} />
 		</StyledCardItem>
 	);
 };
