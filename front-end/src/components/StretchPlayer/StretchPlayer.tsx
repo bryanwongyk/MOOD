@@ -35,6 +35,11 @@ const HeaderSubTitle = styled.h2`
 	}
 `;
 
+const HeaderSubTitleHidden = styled(HeaderSubTitle)`
+	opacity: 0;
+	pointer-events: none;
+`;
+
 const ExtendedCarousel = styled(Carousel)`
 	max-height: 500px;
 
@@ -122,10 +127,16 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 	const content = !!interval ? (
 		<>
 			<Header>
-				<HeaderTitle>Breathe</HeaderTitle>
-				<HeaderSubTitle>
-					Stretch {globalState.cardShownId}/{globalState.cards.length}
-				</HeaderSubTitle>
+				<HeaderTitle>{globalState.selectedStretchRoutine}</HeaderTitle>
+				{!globalState.stretchComplete ? (
+					<HeaderSubTitle>
+						Stretch {globalState.cardShownId}/{globalState.cards.length - 1}
+					</HeaderSubTitle>
+				) : (
+					<HeaderSubTitleHidden>
+						Stretch {globalState.cardShownId}/{globalState.cards.length - 1}
+					</HeaderSubTitleHidden>
+				)}
 			</Header>
 			{/* <PlayerCurrentVideo />
 			<Deck /> */}
