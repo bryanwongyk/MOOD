@@ -1,5 +1,3 @@
 import NavSideMenu from './NavSideMenu';
 
-export {
-    NavSideMenu
-}
+export { NavSideMenu };

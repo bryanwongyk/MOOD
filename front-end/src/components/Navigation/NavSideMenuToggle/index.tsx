@@ -1,3 +1,3 @@
-import NavSideMenuToggle from "./NavSideMenuToggle";
+import NavSideMenuToggle from './NavSideMenuToggle';
 
 export { NavSideMenuToggle };

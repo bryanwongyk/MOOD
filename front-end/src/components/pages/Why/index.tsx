@@ -1,3 +1,3 @@
-import Why from "./Why";
+import Why from './Why';
 
 export { Why };
