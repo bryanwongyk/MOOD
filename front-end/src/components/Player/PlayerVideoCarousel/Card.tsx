@@ -3,27 +3,32 @@ import React, { FunctionComponent, ReactElement } from 'react';
 // import bp from '../Theme/breakpoints';
 import styled from 'styled-components';
 
-const CardItem = ({ key, children }): ReactElement => <li key={key}>{children}</li>;
+const CardItem = ({ key, children }): ReactElement => <div key={key}>{children}</div>;
 
 const StyledCardItem = styled(CardItem)`
-	width: 200px;
+	width: 500px;
 	height: 200px;
-	background: red;
 	list-style: none;
+`;
+
+const CardImg = ({ imgSrc, imgAlt, key }): JSX.Element => <img key={key} src={imgSrc} alt={imgAlt} />;
+
+const StyledCardImg = styled(CardImg)`
+	height: 50px;
 `;
 
 interface CardProps {
 	name: string;
 	id: number;
-	imgSrc?: string;
-	imgDescription?: string;
+	imgSrc: string;
+	imgAlt: string;
 }
 
-const Card: FunctionComponent<CardProps> = ({ name, imgSrc, imgDescription, id }): ReactElement => {
+const Card: FunctionComponent<CardProps> = ({ name, imgSrc, id, imgAlt }): ReactElement => {
 	return (
 		<StyledCardItem key={id}>
 			<h4>{name}</h4>
-			<img src={imgSrc} alt={imgDescription} />
+			<StyledCardImg imgSrc={imgSrc} imgAlt={imgAlt} key={id} />
 		</StyledCardItem>
 	);
 };
