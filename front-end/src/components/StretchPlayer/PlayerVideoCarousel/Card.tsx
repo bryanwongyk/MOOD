@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement, useContext } from 'react';
+import { FunctionComponent, ReactElement, useContext } from 'react';
 // import theme from '../Theme/theme';
 // import bp from '../Theme/breakpoints';
 import styled from 'styled-components';
@@ -43,4 +43,4 @@ const Card: FunctionComponent<CardProps> = ({ id, name, imgSrc, imgAlt, timeInte
 };
 
 // Prevents unnecessary renders. If the parent re-renders, the child (this Card) will not re-render unless it has changed
-export default React.memo(Card);
+export default Card;

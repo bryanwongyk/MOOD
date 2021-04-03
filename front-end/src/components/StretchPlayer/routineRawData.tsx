@@ -3,6 +3,7 @@ import stretchSample from '../../assets/stretchSample.jpeg';
 const routineRawData = {
 	Breathe: {
 		description: 'sample description',
+		timeTakenMinutes: 10,
 		stretches: [
 			{
 				id: 1,

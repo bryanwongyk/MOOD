@@ -1,7 +1,10 @@
-import { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, ReactElement, useContext, useEffect } from 'react';
 import bp from '../../Theme/breakpoints';
-import { Player } from '../../Player';
+import { StretchPlayer } from '../../StretchPlayer';
 import styled from 'styled-components';
+import { ContextType } from '../../../typings/storetype';
+import { GlobalStateContext } from '../../../store/reducers';
+import Spinner from '../../UI/Spinner';
 
 const ActivitiesContainer = styled.div`
 	margin: 0 auto;
@@ -11,9 +14,22 @@ const ActivitiesContainer = styled.div`
 `;
 
 const Activities: FunctionComponent = (): ReactElement => {
-	return (
+	// const [showPlayer, setShowPlayer] => {
+
+	// }
+	// TODO: this routine selection should be dynamic. Right now, the default global state is set to Breathe
+	const { globalState, globalActions } = useContext(GlobalStateContext) as ContextType;
+
+	// TEMPORARY HARD CODING OF ROUTINE
+	useEffect(() => {
+		globalActions.setStretchRoutine('Breathe');
+	}, []);
+
+	return globalState.selectedStretchRoutine ? (
 		<ActivitiesContainer>
-			<Player />
+			{!!globalState.selectedStretchRoutine ? (
+				<StretchPlayer routine={globalState.selectedStretchRoutine} />
+			) : null}
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
 				pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.
@@ -23,6 +39,8 @@ const Activities: FunctionComponent = (): ReactElement => {
 				tellus, in suscipit massa vehicula eu.
 			</p>
 		</ActivitiesContainer>
+	) : (
+		<Spinner />
 	);
 };
 

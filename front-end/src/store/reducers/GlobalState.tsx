@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { GlobalStateActions as actionTypes } from '../actions';
 import { ContextType } from '../../typings/storetype';
-import Card from '../../components/Player/PlayerVideoCarousel/Card';
+import Card from '../../components/StretchPlayer/PlayerVideoCarousel/Card';
 
 interface initialStateType {
 	cards: null | typeof Card;
@@ -10,6 +10,7 @@ interface initialStateType {
 	cardShownId: null | number;
 	lastCardId: null | number;
 	stretchComplete: boolean;
+	selectedStretchRoutine: null | string;
 }
 
 const initialState: initialStateType = {
@@ -19,12 +20,18 @@ const initialState: initialStateType = {
 	cardShownId: null,
 	lastCardId: null,
 	stretchComplete: false,
+	selectedStretchRoutine: null,
 };
 
 const GlobalStateContext = React.createContext<ContextType | null>(null);
 
 const reducer = (state, action): any => {
 	switch (action.type) {
+		case actionTypes.SET_STRETCH_ROUTINE:
+			return {
+				...state,
+				selectedStretchRoutine: action.selectedStretchRoutine,
+			};
 		case actionTypes.SET_CARDS:
 			return {
 				...state,
@@ -56,6 +63,17 @@ const reducer = (state, action): any => {
 				...state,
 				stretchComplete: false,
 			};
+		case actionTypes.RESET_STRETCHES:
+			return {
+				...state,
+				cards: null,
+				cardIntervals: {},
+				cardsLoaded: false,
+				cardShownId: null,
+				lastCardId: null,
+				stretchComplete: false,
+				selectedStretchRoutine: null,
+			};
 		default: {
 			console.error(`Unhandled action type: ${action.type}`);
 		}
@@ -67,6 +85,12 @@ const GlobalStateProvider = ({ children }): React.ReactElement => {
 	const [globalState, dispatch] = useReducer(reducer, initialState);
 
 	const globalActions = {
+		setStretchRoutine: selectedStretchRoutine => {
+			dispatch({
+				type: actionTypes.SET_STRETCH_ROUTINE,
+				selectedStretchRoutine: selectedStretchRoutine,
+			});
+		},
 		setCards: (cards, cardIntervals, cardsLoaded) => {
 			dispatch({
 				type: actionTypes.SET_CARDS,
@@ -95,6 +119,11 @@ const GlobalStateProvider = ({ children }): React.ReactElement => {
 		setStretchIncomplete: () => {
 			dispatch({
 				type: actionTypes.SET_STRETCH_INCOMPLETE,
+			});
+		},
+		resetStretches: () => {
+			dispatch({
+				type: actionTypes.RESET_STRETCHES,
 			});
 		},
 	};

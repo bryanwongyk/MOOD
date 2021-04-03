@@ -41,7 +41,11 @@ const HeaderSubTitle = styled.h2`
 // 	background: grey;
 // `;
 
-const Player: FunctionComponent = (): ReactElement => {
+interface StretchPlayerProps {
+	routine: string;
+}
+
+const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): ReactElement => {
 	// TODO: get the routine that the user has selected from context (based on selector).
 	const { globalActions, globalState } = useContext(GlobalStateContext) as ContextType;
 
@@ -53,15 +57,15 @@ const Player: FunctionComponent = (): ReactElement => {
 	const [interval, setInterval] = useState(globalState.cardIntervals[currentStretch]);
 
 	// iterate through the stretches in the given routine
-	const currentRoutineData = data['Breathe']['stretches'];
-
+	const currentRoutineData = data[routine];
 	// avoid cards from being re-calculated unless they change.
 	// this gets re-rendered everytime the stretch gets changed.. move this to global state
 	useEffect(() => {
-		if (!globalState.cardsLoaded) {
+		setCurrentStretch(1);
+		if (!!globalState.selectedStretchRoutine) {
 			const cardIntervals = {};
 			const cardIds: number[] = [];
-			const cards = currentRoutineData.map(stretch => {
+			const cards = currentRoutineData['stretches'].map(stretch => {
 				// store the time for each stretch
 				cardIntervals[stretch.id] = stretch.timeTakenMilliseconds;
 				cardIds.push(stretch.id);
@@ -79,13 +83,13 @@ const Player: FunctionComponent = (): ReactElement => {
 				);
 			});
 			// set completion card to final
-			cards.push(<CompletionCard key={cardIds.length} />);
+			cards.push(<CompletionCard key={cardIds.length} timeTaken={currentRoutineData['timeTakenMinutes']} />);
 			globalActions.setCards(cards, cardIntervals, true);
 			setInterval(cardIntervals[currentStretch]);
 			globalActions.setCardShown(currentStretch);
 			globalActions.setLastCardId(cardIds[cardIds.length - 1]);
 		}
-	}, [currentRoutineData, currentStretch, globalActions, globalState.cardsLoaded]);
+	}, [globalState.selectedStretchRoutine]);
 
 	// https://stackoverflow.com/questions/62760233/how-to-add-a-video-to-react-responsive-carousel-npm-package
 	const customRenderThumb = (): JSX.Element[] =>
@@ -97,7 +101,6 @@ const Player: FunctionComponent = (): ReactElement => {
 	//https://stackoverflow.com/questions/61451388/is-there-a-way-to-put-a-different-time-interval-for-each-slide-in-react-responsi
 	// the initial state should be the interval for the first stretch
 	// console.log('interval: ', interval);
-	console.log(globalState.stretchComplete);
 	const onChange = (_, item): void => {
 		// if not complete
 		if (!globalState.stretchComplete) {
@@ -142,4 +145,4 @@ const Player: FunctionComponent = (): ReactElement => {
 	return content;
 };
 
-export default Player;
+export default StretchPlayer;

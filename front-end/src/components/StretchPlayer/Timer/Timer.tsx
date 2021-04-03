@@ -14,8 +14,6 @@ const Timer: FunctionComponent<TimerProps> = ({ initialTime }): ReactElement => 
 
 	useEffect(() => {
 		// exit early when we reach 0
-		console.log(timeLeft);
-
 		// save intervalId to clear the interval when the
 		// component re-renders
 		const tick = setTimeout(() => {
@@ -25,7 +23,6 @@ const Timer: FunctionComponent<TimerProps> = ({ initialTime }): ReactElement => 
 		if (timeLeft <= 1) {
 			if (globalState.cardShownId === globalState.lastCardId) {
 				globalActions.setStretchComplete();
-				console.log(globalState.stretchComplete);
 			}
 			clearTimeout(tick);
 			return;
