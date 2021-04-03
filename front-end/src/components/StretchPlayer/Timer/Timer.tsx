@@ -20,10 +20,13 @@ const Timer: FunctionComponent<TimerProps> = ({ initialTime }): ReactElement => 
 			setTimeLeft(timeLeft - 1);
 		}, 1000);
 
-		if (timeLeft <= 1) {
-			if (globalState.cardShownId === globalState.lastCardId) {
+		if (globalState.cardShownId === globalState.lastCardId) {
+			if (timeLeft <= 1) {
 				globalActions.setStretchComplete();
 			}
+		}
+
+		if (timeLeft <= 0) {
 			clearTimeout(tick);
 			return;
 		}
