@@ -9,6 +9,8 @@ import data from './routineRawData';
 import { ContextType } from '../../typings/storetype';
 import { GlobalStateContext } from '../../store/reducers';
 import Card from './PlayerVideoCarousel/Card';
+import CompletionCard from './PlayerVideoCarousel/CompletionCard';
+import Spinner from '../UI/Spinner';
 
 const Header = styled.div`
 	display: flex;
@@ -52,6 +54,7 @@ const Player: FunctionComponent = (): ReactElement => {
 
 	// iterate through the stretches in the given routine
 	const currentRoutineData = data['Breathe']['stretches'];
+
 	// avoid cards from being re-calculated unless they change.
 	// this gets re-rendered everytime the stretch gets changed.. move this to global state
 	useEffect(() => {
@@ -62,7 +65,7 @@ const Player: FunctionComponent = (): ReactElement => {
 				// store the time for each stretch
 				cardIntervals[stretch.id] = stretch.timeTakenMilliseconds;
 				cardIds.push(stretch.id);
-				console.log(stretch.timeTakenMilliseconds);
+				// console.log(stretch.timeTakenMilliseconds);
 				// Return a card
 				return (
 					<Card
@@ -75,6 +78,8 @@ const Player: FunctionComponent = (): ReactElement => {
 					/>
 				);
 			});
+			// set completion card to final
+			cards.push(<CompletionCard key={cardIds.length} />);
 			globalActions.setCards(cards, cardIntervals, true);
 			setInterval(cardIntervals[currentStretch]);
 			globalActions.setCardShown(currentStretch);
@@ -91,17 +96,18 @@ const Player: FunctionComponent = (): ReactElement => {
 	// Set different timer intervals for each stretch
 	//https://stackoverflow.com/questions/61451388/is-there-a-way-to-put-a-different-time-interval-for-each-slide-in-react-responsi
 	// the initial state should be the interval for the first stretch
-	console.log('interval: ', interval);
+	// console.log('interval: ', interval);
+	console.log(globalState.stretchComplete);
 	const onChange = (_, item): void => {
-		setCurrentStretch(item.props.id);
-		// const newInterval = globalState.cardIntervals[currentStretch]
-		console.log(item.props);
-		globalActions.setCardShown(item.props.id);
-		setInterval(item.props.timeInterval);
+		// if not complete
+		if (!globalState.stretchComplete) {
+			setCurrentStretch(item.props.id);
+			// const newInterval = globalState.cardIntervals[currentStretch]
+			// console.log(item.props);
+			globalActions.setCardShown(item.props.id);
+			setInterval(item.props.timeInterval);
+		}
 	};
-	// console.log('currentStretch:', currentStretch);
-	// console.log('currentInterval', interval);
-	// console.log('globalInterval', globalState.cardIntervals);
 
 	// let timer = !!interval ? <Timer initialTime={interval} /> : null;
 	// only show content once the first card time is found
@@ -117,8 +123,9 @@ const Player: FunctionComponent = (): ReactElement => {
 			<Carousel
 				axis="horizontal"
 				autoPlay={true}
-				showThumbs={true}
 				renderThumbs={customRenderThumb}
+				// showThumbs={!globalState.stretchComplete}
+				showThumbs={false}
 				interval={interval}
 				showIndicators={false}
 				showStatus={false}
@@ -129,7 +136,7 @@ const Player: FunctionComponent = (): ReactElement => {
 			</Carousel>
 		</>
 	) : (
-		<div>'loading...'</div>
+		<Spinner />
 	);
 
 	return content;

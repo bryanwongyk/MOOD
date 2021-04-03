@@ -23,15 +23,15 @@ const StyledCardImg = styled(CardImg)`
 interface CardProps {
 	id: number;
 	name: string;
-	imgSrc: string;
-	imgAlt: string;
+	imgSrc?: string;
+	imgAlt?: string;
 	timeInterval: number;
 }
 
 const Card: FunctionComponent<CardProps> = ({ id, name, imgSrc, imgAlt, timeInterval }): ReactElement => {
 	const { globalState } = useContext(GlobalStateContext) as ContextType;
 	const initialTime = Math.floor(timeInterval / 1000);
-	console.log('initial time', initialTime);
+	// console.log('initial time', initialTime);
 	const timer = globalState.cardShownId === id ? <Timer initialTime={initialTime} /> : null;
 	return (
 		<StyledCardItem data-interval={timeInterval}>

@@ -9,6 +9,7 @@ interface initialStateType {
 	cardsLoaded: boolean;
 	cardShownId: null | number;
 	lastCardId: null | number;
+	stretchComplete: boolean;
 }
 
 const initialState: initialStateType = {
@@ -17,6 +18,7 @@ const initialState: initialStateType = {
 	cardsLoaded: false,
 	cardShownId: null,
 	lastCardId: null,
+	stretchComplete: false,
 };
 
 const GlobalStateContext = React.createContext<ContextType | null>(null);
@@ -29,6 +31,7 @@ const reducer = (state, action): any => {
 				cards: action.cards,
 				cardIntervals: action.cardIntervals,
 				cardsLoaded: action.cardsLoaded,
+				stretchComplete: false,
 			};
 		case actionTypes.SET_CARD_SHOWN_ID:
 			return {
@@ -39,6 +42,19 @@ const reducer = (state, action): any => {
 			return {
 				...state,
 				lastCardId: action.lastCardId,
+			};
+		case actionTypes.SET_STRETCH_COMPLETE:
+			return {
+				...state,
+				stretchComplete: true,
+				cardIntervals: {},
+				cardShownId: null,
+				lastCardId: null,
+			};
+		case actionTypes.SET_STRETCH_INCOMPLETE:
+			return {
+				...state,
+				stretchComplete: false,
 			};
 		default: {
 			console.error(`Unhandled action type: ${action.type}`);
@@ -69,6 +85,16 @@ const GlobalStateProvider = ({ children }): React.ReactElement => {
 			dispatch({
 				type: actionTypes.SET_LAST_CARD_ID,
 				lastCardId: lastCardId,
+			});
+		},
+		setStretchComplete: () => {
+			dispatch({
+				type: actionTypes.SET_STRETCH_COMPLETE,
+			});
+		},
+		setStretchIncomplete: () => {
+			dispatch({
+				type: actionTypes.SET_STRETCH_INCOMPLETE,
 			});
 		},
 	};
