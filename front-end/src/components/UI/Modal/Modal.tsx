@@ -1,16 +1,54 @@
-import { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, ReactElement } from "react";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
-const Modal: FunctionComponent = (): ReactElement => {
-	return (
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-			Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet
-			porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat. Sed ut
-			dui ut lacus dictum fermentum vel tincidunt neque. Sed sed lacinia lectus. Duis sit amet sodales felis. Duis
-			nunc eros, mattis at dui ac, convallis semper risus. In adipiscing ultrices tellus, in suscipit massa
-			vehicula eu.
-		</p>
-	);
+
+
+const StyledModal: FunctionComponent = (): ReactElement => {
+  const [open, setOpen] = React.useState(true);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        SignIn/Up
+      </Button>
+      <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">{"Sign Up to enjoy more features"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Sign Up to enjoy more features
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose} color="primary">
+            Sign Up
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
 };
 
-export default Modal;
+export default StyledModal;

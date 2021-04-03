@@ -1,7 +1,15 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent } from "react";
+import StyledModal from "components/UI/Modal/Modal";
 
 const NavHeader: FunctionComponent = () => {
-	return <nav>Test Nav header</nav>;
-};
+    return (
+        <>
+        <p>
+            Test Nav header
+        </p>
+            <StyledModal />
+        </>
+    )
+}
 
 export default NavHeader;

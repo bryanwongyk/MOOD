@@ -4,6 +4,7 @@ import { Layout } from './components/Navigation/Layout';
 import { Why } from './components/pages/Why';
 import { About } from './components/pages/About';
 import { Player } from './components/Player';
+import { LandingPage } from "components/pages/LandingPage";
 import { GlobalStateProvider } from './store/reducers/GlobalState';
 
 const App: FunctionComponent = (): ReactElement => {
@@ -11,7 +12,7 @@ const App: FunctionComponent = (): ReactElement => {
 		<Switch>
 			<Route path="/why" component={Why} />
 			<Route path="/about" component={About} />
-			<Route path="/" exact component={Player} />
+			<Route path="/" exact component={LandingPage} />
 			{/* Redirect any unknown link to the home page */}
 			<Redirect to="/" />
 		</Switch>
