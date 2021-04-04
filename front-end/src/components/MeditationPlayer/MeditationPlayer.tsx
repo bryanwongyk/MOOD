@@ -110,9 +110,13 @@ const MeditationPlayer: FunctionComponent<MeditationPlayerProps> = ({ routine })
 		timeLeft.current = `${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
 	}
 
-	// if (timeLeft === '00:00') {
-	// 	setIsPlaying(false);
-	// }
+	if (timeLeft.current === '00:00') {
+		clearInterval(intervalRef.current);
+		setIsPlaying(false);
+		audioRef.current.currentTime = 0;
+		setTrackProgress(0);
+		audioRef.current.pause();
+	}
 
 	return (
 		<div className="audio-player">
