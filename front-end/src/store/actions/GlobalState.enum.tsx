@@ -7,6 +7,8 @@ enum GlobalStateActions {
 	SET_STRETCH_INCOMPLETE,
 	RESET_STRETCHES,
 	SET_MEDITATION_ROUTINE,
+	SET_EXERCISE_FILTER,
+	RESET_ALL,
 }
 
 export default GlobalStateActions;

@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, ReactElement, useContext } from 'react';
 import Card from '@material-ui/core/Card';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import CardContent from '@material-ui/core/CardContent';
@@ -8,18 +8,23 @@ import stretchingTension from '../../assets/tensionadjusted.png';
 import deadline from '../../assets/deadlinesadjusted.png';
 import meditateLaidOff from '../../assets/laidoff2adjusted.png';
 import meditateTension from '../../assets/tension2adjusted.png';
+import { ContextType } from '../../typings/storetype';
+import { GlobalStateContext } from '../../store/reducers';
 
 // import styled from 'styled-components';
 
 interface ExerciseListProps {
 	name: string;
+	type: string;
 	content: string;
 	category: string;
 }
 
-const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, content, category }): ReactElement => {
-	let imgsrc;
-	if (category === 'Stretching') {
+const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, type, content }): ReactElement => {
+	const { globalState, globalActions } = useContext(GlobalStateContext) as ContextType;
+	console.log(globalState.selectedExerciseFilter);
+  let imgsrc;
+	if (type === 'Stretching') {
 		if (name === 'Laid off') {
 			imgsrc = stretchingLaidoff;
 		} else if (name === 'Breath') {
@@ -27,7 +32,7 @@ const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, content, 
 		} else if (name === 'Tension') {
 			imgsrc = stretchingTension;
 		}
-	} else if (category === 'Meditating') {
+	} else if (type === 'Meditating') {
 		if (name === 'Deadlines') {
 			imgsrc = deadline;
 		} else if (name === 'Laid off') {
@@ -40,7 +45,17 @@ const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, content, 
 		<Card>
 			<ButtonBase
 				onClick={() => {
-					console.log('test');
+					globalActions.setExerciseFilter(type);
+					switch (type) {
+						case 'Meditating':
+							globalActions.setMeditationRoutine(name);
+							break;
+						case 'Stretching':
+							globalActions.setStretchRoutine(name);
+							break;
+						default:
+							console.error(`Exercise type is invalid: ${type}`);
+					}
 				}}
 			>
 				<CardContent>

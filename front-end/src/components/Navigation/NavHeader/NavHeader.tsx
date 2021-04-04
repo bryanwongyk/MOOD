@@ -1,9 +1,11 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useContext } from 'react';
 import styled from 'styled-components';
 import theme from '../../Theme/theme';
 import { NavSideMenu } from '../NavSideMenu';
 import { HashLink as Link } from 'react-router-hash-link';
 import bp from '../../Theme/breakpoints';
+import { GlobalStateContext } from 'store/reducers';
+import { ContextType } from '../../../typings/storetype';
 
 const Logo = styled.div`
 	width: 130px;
@@ -99,14 +101,22 @@ const GetStartedLink = styled(Link)`
 `;
 
 const NavHeader: FunctionComponent = () => {
+	const { globalActions } = useContext(GlobalStateContext) as ContextType;
 	// always scroll to top when they click on link that is meant to
 	const scrollToTop = (): void => {
 		window.scrollTo(0, 0);
 	};
 
+	const clickHandler = (): void => {
+		scrollToTop();
+		// e.g. if we click on the logos to go to home page while doing an exercise, we want to
+		// clear whatever exercise routine was set
+		globalActions.resetAll();
+	};
+
 	return (
 		<StyledNavHeader>
-			<Link to="/" onClick={scrollToTop}>
+			<Link to="/" onClick={clickHandler}>
 				<Logo>mood.</Logo>
 			</Link>
 			<div id="sideMenu">
@@ -114,13 +124,19 @@ const NavHeader: FunctionComponent = () => {
 			</div>
 			<ul>
 				<li>
-					<Link to="/#intro">About</Link>
+					<Link to="/#intro" onClick={clickHandler}>
+						About
+					</Link>
 				</li>
 				<li>
-					<Link to="/#why">Why use mood.?</Link>
+					<Link to="/#why" onClick={clickHandler}>
+						Why use mood.?
+					</Link>
 				</li>
 				<li>
-					<Link to="/#what-we-offer">What we offer</Link>
+					<Link to="/#what-we-offer" onClick={clickHandler}>
+						What we offer
+					</Link>
 				</li>
 				<li>
 					<GetStartedLink to="/activities" onClick={scrollToTop}>

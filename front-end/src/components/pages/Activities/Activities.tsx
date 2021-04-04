@@ -12,7 +12,6 @@ import ExerciseModal from '../../UI/ExerciseModal/ExerciseModal';
 
 const ActivitiesContainer = styled.div`
 	margin: 0 auto;
-	height: 100%;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -32,7 +31,6 @@ const MeditationActivitiesContainer = styled(ActivitiesContainer)`
 	margin: 0;
 	background-size: cover;
 	width: 100%;
-	height: 100%;
 	overflow-x: hidden;
 	max-height: 1100px;
 	@media ${bp.sm} {
@@ -49,9 +47,8 @@ const Activities: FunctionComponent = (): ReactElement => {
 
 	// TEMPORARY HARD CODING OF ROUTINE
 	useEffect(() => {
-		// globalActions.setStretchRoutine('Laid Off');
-		globalActions.setMeditationRoutine('Laid Off');
-	}, []);
+		globalActions.setMeditationRoutine('Deadlines');
+	}, [globalState.selectedMeditationRoutine, globalState.selectedStretchRoutine]);
 
 	let content: any = null;
 	if (!!globalState.selectedStretchRoutine) {

@@ -11,6 +11,8 @@ interface initialStateType {
 	lastCardId: null | number;
 	stretchComplete: boolean;
 	selectedStretchRoutine: null | string;
+	selectedMeditationRoutine: null | string;
+	selectedExerciseFilter: null | string;
 }
 
 const initialState: initialStateType = {
@@ -21,6 +23,8 @@ const initialState: initialStateType = {
 	lastCardId: null,
 	stretchComplete: false,
 	selectedStretchRoutine: null,
+	selectedMeditationRoutine: null,
+	selectedExerciseFilter: null,
 };
 
 const GlobalStateContext = React.createContext<ContextType | null>(null);
@@ -79,6 +83,23 @@ const reducer = (state, action): any => {
 				...state,
 				selectedMeditationRoutine: action.selectedMeditationRoutine,
 			};
+		case actionTypes.SET_EXERCISE_FILTER:
+			return {
+				...state,
+				selectedExerciseFilter: action.selectedExerciseFilter,
+			};
+		case actionTypes.RESET_ALL:
+			return {
+				cards: null,
+				cardIntervals: {},
+				cardsLoaded: false,
+				cardShownId: null,
+				lastCardId: null,
+				stretchComplete: false,
+				selectedStretchRoutine: null,
+				selectedMeditationRoutine: null,
+				selectedExerciseFilter: null,
+			};
 		default: {
 			console.error(`Unhandled action type: ${action.type}`);
 		}
@@ -135,6 +156,17 @@ const GlobalStateProvider = ({ children }): React.ReactElement => {
 			dispatch({
 				type: actionTypes.SET_MEDITATION_ROUTINE,
 				selectedMeditationRoutine: selectedMeditationRoutine,
+			});
+		},
+		setExerciseFilter: selectedExerciseFilter => {
+			dispatch({
+				type: actionTypes.SET_EXERCISE_FILTER,
+				selectedExerciseFilter: selectedExerciseFilter,
+			});
+		},
+		resetAll: () => {
+			dispatch({
+				type: actionTypes.RESET_ALL,
 			});
 		},
 	};

@@ -1,10 +1,12 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useContext } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { NavItem } from '../NavItem';
 import theme from '../../Theme/theme';
 import { SideMenuDummy } from '../../Text/SideMenuDummy';
 import { useState } from 'react';
 import sidebar from '../../../assets/sidebar.png';
+import { GlobalStateContext } from 'store/reducers';
+import { ContextType } from '../../../typings/storetype';
 
 // Styles provided by react-burger-menu documentation
 const styles = {
@@ -57,10 +59,12 @@ const styles = {
 };
 
 const NavSideMenu: FunctionComponent = () => {
+	const { globalActions } = useContext(GlobalStateContext) as ContextType;
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const handleClick = (): void => {
 		setMenuOpen(false);
+		globalActions.resetAll();
 	};
 
 	return (
