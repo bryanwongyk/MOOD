@@ -17,6 +17,7 @@ const theme = {
 			main: '#000000',
 			contrast: '#FFFFFF',
 			highlight: '#E97A95',
+			exerciseMenu: '#796CBB',
 		},
 		background: '#EFEDFB',
 		sideMenuBar: {
