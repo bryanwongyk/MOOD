@@ -3,15 +3,67 @@ import data from './audioRawData';
 import Controls from './MeditationPlayerControls';
 import styled from 'styled-components';
 import PlaybackTime from './PlaybackTime';
+import theme from '../Theme/theme';
 
 const PlaybackInput = styled.input`
-	height: 5px;
-	width: 100%;
+	height: 10px;
+	width: 50%;
 	margin-bottom: 10px
 	border-radius: 8px;
 	background: #3b7677;
 	transition: background 0.2s ease;
 	cursor: pointer;
+	z-index: 10;
+	margin-top: 300px;
+`;
+
+const AudioPlayer = styled.div`
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	position: static;
+`;
+
+const MoonDiv = styled.div`
+	position: absolute;
+	width: 280px;
+	height: 280px;
+	border-radius: 50%;
+	background: linear-gradient(180deg, #c4c4c4 0%, rgba(196, 196, 196, 0) 100%);
+	margin-bottom: 250px;
+`;
+
+const MoonTextDiv = styled.div`
+	color: ${theme.color.text.contrast};
+	z-index: 10;
+	text-align: center;
+
+	h1 {
+		font-size: 5rem;
+		margin: 0;
+		position: relative;
+		top: 140px;
+	}
+	h2 {
+		font-size: 1rem;
+		line-height: 1.7;
+		margin: 0;
+		position: relative;
+		top: 140px;
+	}
+`;
+
+const RoutineHeading = styled.h1`
+	z-index: 10;
+	font-size: 2.5rem;
+	color: ${theme.color.text.contrast};
+	position: relative;
+	top: 270px;
+	margin: 0;
 `;
 
 interface MeditationPlayerProps {
@@ -25,7 +77,7 @@ const MeditationPlayer: FunctionComponent<MeditationPlayerProps> = ({ routine })
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [trackProgress, setTrackProgress] = useState(0);
 
-	const { title, audioSrc, audioDuration } = data[routine];
+	const { audioSrc, audioDuration } = data[routine];
 
 	const audioRef = useRef(
 		// https://stackoverflow.com/questions/47956881/javascript-html5-audio-player-cors-not-play-dynamic-source
@@ -119,26 +171,30 @@ const MeditationPlayer: FunctionComponent<MeditationPlayerProps> = ({ routine })
 	}
 
 	return (
-		<div className="audio-player">
-			<div className="track-info">
-				{/* <h2 className="title">{title}</h2> */}
-				{title}
-				<Controls isPlaying={isPlaying} onPlayPauseClick={setIsPlaying} />
-				<PlaybackInput
-					type="range"
-					value={trackProgress}
-					step="1"
-					min="0"
-					max={duration ? duration : `${duration}`}
-					className="progress"
-					onChange={e => onScrub(e.target.value)}
-					onMouseUp={onScrubEnd}
-					onKeyUp={onScrubEnd}
-					style={{ background: trackStyling }}
-				/>
-				<PlaybackTime currentTime={currentTimeRef.current} timeLeft={timeLeft.current} />
-			</div>
-		</div>
+		<AudioPlayer>
+			<MoonDiv />
+			<MoonTextDiv>
+				<h1>relax</h1>
+				<h2>
+					Close your eyes and follow the <br /> meditation guide.
+				</h2>
+			</MoonTextDiv>
+			<RoutineHeading>{routine}</RoutineHeading>
+			<PlaybackInput
+				type="range"
+				value={trackProgress}
+				step="1"
+				min="0"
+				max={duration ? duration : `${duration}`}
+				className="progress"
+				onChange={e => onScrub(e.target.value)}
+				onMouseUp={onScrubEnd}
+				onKeyUp={onScrubEnd}
+				style={{ background: trackStyling }}
+			/>
+			<PlaybackTime currentTime={currentTimeRef.current} timeLeft={timeLeft.current} />
+			<Controls isPlaying={isPlaying} onPlayPauseClick={setIsPlaying} />
+		</AudioPlayer>
 	);
 	// return <div>{routine}</div>;
 };
