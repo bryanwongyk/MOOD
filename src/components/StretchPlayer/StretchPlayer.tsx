@@ -156,6 +156,7 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 				showIndicators={false}
 				showStatus={false}
 				showArrows={false}
+				swipeable={false}
 				onChange={onChange}
 			>
 				{cards}
