@@ -30,11 +30,12 @@ const StyledNavHeader = styled.div`
 	display: block;
 	background: ${theme.color.background};
 	position: fixed;
+	z-index: 100;
 	ul {
 		display: none;
 	}
 	@media (min-width: 768px) {
-		padding: 10px 10vw 20px 10vw;
+		padding: 10px 10vw 10px 10vw;
 		height: ${theme.height.navBarDesktop};
 		& #sideMenu {
 			display: none;
