@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactElement, useContext } from 'react';
-import { Button } from '../../Button';
+import { MyButton } from '../../Button';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
 // import { Redirect } from 'react-router-dom';
@@ -25,7 +25,7 @@ const CompletionCard: FunctionComponent<CompletionCardProps> = ({ timeTaken }): 
 			<p>
 				You've stretched for {timeTaken} minutes and loosened up!
 				<br />
-				<Button onClick={restartHandler}>Start Again</Button>
+				<MyButton onClick={restartHandler}>Start Again</MyButton>
 				<br />
 				or select another routine from the explorer!
 			</p>

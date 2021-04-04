@@ -20,7 +20,6 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }): ReactElement => {
 			<StyledLayout>
 				<NavHeader />
 				<MainWrapper>{children}</MainWrapper>
-				<button onClick={() => globalActions.testAction()}>test button</button>
 				<Footer></Footer>
 			</StyledLayout>
 		</>

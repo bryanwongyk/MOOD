@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
 import Spinner from '../../UI/Spinner';
+import { ExerciseMenu } from 'components/Navigation/ExerciseMenu';
 
 const ActivitiesContainer = styled.div`
 	margin: 0 auto;
@@ -35,7 +36,7 @@ const Activities: FunctionComponent = (): ReactElement => {
 	// const [showPlayer, setShowPlayer] => {
 
 	// }
-	// TODO: this routine selection should be dynamic. Right now, the default global state is set to Breathe
+	// TODO: this routine selection should be dynamic. Right now, the default global state is set to Laid Off
 	const { globalState, globalActions } = useContext(GlobalStateContext) as ContextType;
 
 	// TEMPORARY HARD CODING OF ROUTINE
