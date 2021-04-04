@@ -8,6 +8,7 @@ import { Footer } from 'components/Footer';
 const StyledLayout = styled.div`
 	background: ${theme.color.background};
 	width: 100%;
+	min-height: 100vh;
 `;
 
 interface LayoutProps {
