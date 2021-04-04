@@ -29,6 +29,7 @@ const Logo = styled(Styledh1)`
 const FooterWrapper = styled(SectionWrapper)`
 	display: block;
 	align-items: center;
+	text-align: center;
 `;
 
 const Footer: FunctionComponent = (): ReactElement => {
@@ -47,7 +48,7 @@ const Footer: FunctionComponent = (): ReactElement => {
 
 	return (
 		<FooterWrapper id="team">
-			<Link to="/" onClick={clickHandler} style={{ textDecoration: 'none' }}>
+			<Link to="/" onClick={clickHandler} style={{ textDecoration: 'none', display: 'inline-block' }}>
 				<Logo id="footerHeading">mood.</Logo>
 			</Link>
 			{!!globalState.selectedStretchRoutine || !!globalState.selectedMeditationRoutine ? null : (
