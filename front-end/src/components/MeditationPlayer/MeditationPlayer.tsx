@@ -1,6 +1,18 @@
 import { ReactElement, FunctionComponent, useState, useEffect, useRef } from 'react';
 import data from './audioRawData';
 import Controls from './MeditationPlayerControls';
+import styled from 'styled-components';
+import PlaybackTime from './PlaybackTime';
+
+const PlaybackInput = styled.input`
+	height: 5px;
+	width: 100%;
+	margin-bottom: 10px
+	border-radius: 8px;
+	background: #3b7677;
+	transition: background 0.2s ease;
+	cursor: pointer;
+`;
 
 interface MeditationPlayerProps {
 	routine: string;
@@ -13,11 +25,11 @@ const MeditationPlayer: FunctionComponent<MeditationPlayerProps> = ({ routine })
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [trackProgress, setTrackProgress] = useState(0);
 
-	const { title } = data[routine];
+	const { title, audioSrc, audioDuration } = data[routine];
 
 	const audioRef = useRef(
 		// https://stackoverflow.com/questions/47956881/javascript-html5-audio-player-cors-not-play-dynamic-source
-		new Audio('https://docs.google.com/uc?export=download&id=1Wsra6TRfBCvsp0Qavw0Px1GdlowkVMt_'),
+		new Audio(audioSrc),
 	);
 
 	const intervalRef: any = useRef();
@@ -76,9 +88,31 @@ const MeditationPlayer: FunctionComponent<MeditationPlayerProps> = ({ routine })
 		startTimer();
 	};
 
+	// const [currentTime, setCurrentTime] = useState('');
+	// const [timeLeft, setTimeLeft] = useState('');
 	// TIME STAMP
-	const minutes = Math.floor(audioRef.current.currentTime / 60);
-	const seconds = Math.floor(audioRef.current.currentTime % 60);
+
+	// useRef prevents MeditationPlayer from re-rendering when time changes, only PlaybackTime should re-render since its props change
+	// note this is not really doing much because trackProgress is making it rerender anyway
+	const currentTimeRef = useRef('');
+	const currentMinutes = Math.floor(audioRef.current.currentTime / 60);
+	const currentSeconds = Math.floor(audioRef.current.currentTime % 60);
+	currentTimeRef.current = `${currentMinutes.toString().padStart(2, '0')}:${currentSeconds
+		.toString()
+		.padStart(2, '0')}`;
+
+	const timeLeft = useRef(audioDuration);
+	if (!!audioRef.current.duration) {
+		const timeLeftSec = Math.floor(audioRef.current.duration - audioRef.current.currentTime);
+		const minutesLeft = Math.floor(timeLeftSec / 60);
+		const secondsLeft = Math.floor(timeLeftSec % 60);
+
+		timeLeft.current = `${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
+	}
+
+	// if (timeLeft === '00:00') {
+	// 	setIsPlaying(false);
+	// }
 
 	return (
 		<div className="audio-player">
@@ -86,7 +120,7 @@ const MeditationPlayer: FunctionComponent<MeditationPlayerProps> = ({ routine })
 				{/* <h2 className="title">{title}</h2> */}
 				{title}
 				<Controls isPlaying={isPlaying} onPlayPauseClick={setIsPlaying} />
-				<input
+				<PlaybackInput
 					type="range"
 					value={trackProgress}
 					step="1"
@@ -98,9 +132,7 @@ const MeditationPlayer: FunctionComponent<MeditationPlayerProps> = ({ routine })
 					onKeyUp={onScrubEnd}
 					style={{ background: trackStyling }}
 				/>
-				<span>
-					{minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
-				</span>
+				<PlaybackTime currentTime={currentTimeRef.current} timeLeft={timeLeft.current} />
 			</div>
 		</div>
 	);
