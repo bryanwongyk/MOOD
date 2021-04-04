@@ -62,7 +62,6 @@ const LandingPage: FunctionComponent = (): ReactElement => {
 							variety of exercises to help you with that. Stretching keeps your muscles flexible, healthy
 							and strong, and lessens the risks of joint pain, strain and muscle damage.
 						</p>
-						<p>Stretching guides include: “My neck’s stiff”, “My boss hates me”, “I slept funny”</p>
 						<Styledform method="get" action="/activities" style={{ width: '100%' }}>
 							<MyButton dark type="submit">
 								Start Stretching
