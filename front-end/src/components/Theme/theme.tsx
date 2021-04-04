@@ -1,7 +1,7 @@
 const theme = {
 	color: {
 		main: '#6A5CB3',
-		// why: '#E4BF38',
+		yellow: '#E4BF38',
 		// stretch: {
 		// 	player_background: '#FBCCCC',
 		// 	dark: '#E8466E',

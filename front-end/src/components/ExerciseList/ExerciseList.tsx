@@ -1,6 +1,10 @@
 import { FunctionComponent, ReactElement } from 'react';
 import ExerciseSummary from './ExerciseSummary';
-// import styled from 'styled-components';
+import styled from 'styled-components';
+
+const StyledList = styled.ul`
+	padding: 0;
+`;
 
 interface ExerciseListProps {
 	children: string;
@@ -54,7 +58,7 @@ const ExerciseList: FunctionComponent<ExerciseListProps> = ({ children }): React
 		});
 	}
 
-	return <ul>{exercises}</ul>;
+	return <StyledList>{exercises}</StyledList>;
 };
 
 export default ExerciseList;

@@ -10,8 +10,32 @@ import meditateLaidOff from '../../assets/laidoff2adjusted.png';
 import meditateTension from '../../assets/tension2adjusted.png';
 import { ContextType } from '../../typings/storetype';
 import { GlobalStateContext } from '../../store/reducers';
+import theme from '../Theme/theme';
 
-// import styled from 'styled-components';
+import styled from 'styled-components';
+
+const StyledButton = styled(ButtonBase)`
+	transition: background 5s;
+	background-color: #f3d9a1 !important;
+	width: 100%;
+
+	&:hover {
+		background: linear-gradient(#f0ce88, #f9e9b4);
+	}
+`;
+
+const StyledCard = styled(Card)`
+	background: ${theme.color.yellow};
+`;
+
+const DisabledImage = styled.img`
+	filter: grayscale(100%);
+`;
+
+const StyledPara = styled.p`
+	width: 80%;
+	margin: 0 auto;
+`;
 
 interface ExerciseListProps {
 	name: string;
@@ -23,26 +47,32 @@ const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, type, con
 	const { globalState, globalActions } = useContext(GlobalStateContext) as ContextType;
 	console.log(globalState.selectedExerciseFilter);
 	let imgsrc;
+	let disabled = false;
 	if (type === 'Stretching') {
 		if (name === 'Laid Off') {
 			imgsrc = stretchingLaidoff;
 		} else if (name === 'Breath') {
 			imgsrc = breath;
+			disabled = true;
 		} else if (name === 'Tension') {
 			imgsrc = stretchingTension;
+			disabled = true;
 		}
 	} else if (type === 'Meditating') {
 		if (name === 'Deadlines') {
 			imgsrc = deadline;
 		} else if (name === 'Laid Off') {
 			imgsrc = meditateLaidOff;
+			disabled = true;
 		} else if (name === 'Tension') {
 			imgsrc = meditateTension;
+			disabled = true;
 		}
 	}
 	return (
-		<Card>
-			<ButtonBase
+		<StyledCard>
+			<StyledButton
+				disabled={disabled}
 				onClick={() => {
 					globalActions.setExerciseFilter(type);
 					switch (type) {
@@ -58,12 +88,12 @@ const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, type, con
 				}}
 			>
 				<CardContent>
-					<img src={imgsrc}></img>
+					{disabled ? <DisabledImage src={imgsrc} /> : <img src={imgsrc}></img>}
 					<h2>{name}</h2>
-					<p>{content}</p>
+					<StyledPara>{content}</StyledPara>
 				</CardContent>
-			</ButtonBase>
-		</Card>
+			</StyledButton>
+		</StyledCard>
 	);
 };
 
