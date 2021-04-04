@@ -19,7 +19,7 @@ const LandingPage: FunctionComponent = (): ReactElement => {
 
 	return (
 		<>
-			<SectionWrapper id="intro">
+			<SectionWrapper id="intro" style={{ marginTop: '20px' }}>
 				<img src={about_sm} alt="intro pic" width="100%"></img>
 				<div>
 					<Styledh1>We make mindfulness fun</Styledh1>
@@ -51,43 +51,45 @@ const LandingPage: FunctionComponent = (): ReactElement => {
 					</p>
 				</div>
 			</SectionWrapper>
+			<div id="what-we-offer">
+				<SectionWrapper id="stretching">
+					<img src={stretch_sm} alt="intro pic" width="100%"></img>
+					<div>
+						<Styledh1>Stretching</Styledh1>
+						<p>
+							Sitting at a desk for work can mean your body becomes stiff from lack of moment. Stiff =
+							bad. Over a prolonged period, this can weaken your muscles. But don’t worry, we have a
+							variety of exercises to help you with that. Stretching keeps your muscles flexible, healthy
+							and strong, and lessens the risks of joint pain, strain and muscle damage.
+						</p>
+						<p>Stretching guides include: “My neck’s stiff”, “My boss hates me”, “I slept funny”</p>
+						<Styledform method="get" action="/activities" style={{ width: '100%' }}>
+							<MyButton dark type="submit">
+								Start Stretching
+							</MyButton>
+						</Styledform>
+					</div>
+				</SectionWrapper>
 
-			<SectionWrapper id="stretching">
-				<img src={stretch_sm} alt="intro pic" width="100%"></img>
-				<div>
-					<Styledh1>Stretching</Styledh1>
-					<p>
-						Sitting at a desk for work can mean your body becomes stiff from lack of moment. Stiff = bad.
-						Over a prolonged period, this can weaken your muscles. But don’t worry, we have a variety of
-						exercises to help you with that. Stretching keeps your muscles flexible, healthy and strong, and
-						lessens the risks of joint pain, strain and muscle damage.
-					</p>
-					<p>Stretching guides include: “My neck’s stiff”, “My boss hates me”, “I slept funny”</p>
-					<Styledform method="get" action="/activities" style={{ width: '100%' }}>
-						<MyButton dark type="submit">
-							Start Stretching
-						</MyButton>
-					</Styledform>
-				</div>
-			</SectionWrapper>
-
-			<SectionWrapper id="meditating">
-				<img src={meditate_sm} alt="intro pic" width="100%"></img>
-				<div>
-					<Styledh1>Meditating</Styledh1>
-					<p>
-						Meditation has been proven to help relieve stress, control anxiety and increase your focus and
-						attention to what matters - and to help you unfocus on that unnecessary meeting, your stingy
-						boss and Alan from payroll. Especially important in work or study, a flow state is a complete
-						immersion in a task where distractive thoughts cease – meditation helps you achieve that.
-					</p>
-					<Styledform method="get" action="/activities" style={{ width: '100%' }}>
-						<MyButton dark type="submit">
-							Open Your Mind
-						</MyButton>
-					</Styledform>
-				</div>
-			</SectionWrapper>
+				<SectionWrapper id="meditating">
+					<img src={meditate_sm} alt="intro pic" width="100%"></img>
+					<div>
+						<Styledh1>Meditating</Styledh1>
+						<p>
+							Meditation has been proven to help relieve stress, control anxiety and increase your focus
+							and attention to what matters - and to help you unfocus on that unnecessary meeting, your
+							stingy boss, and Alan from payroll. Especially important in work or study, a flow state is a
+							complete immersion in a task where distractive thoughts cease – meditation helps you achieve
+							that.
+						</p>
+						<Styledform method="get" action="/activities" style={{ width: '100%' }}>
+							<MyButton dark type="submit">
+								Open Your Mind
+							</MyButton>
+						</Styledform>
+					</div>
+				</SectionWrapper>
+			</div>
 		</>
 	);
 };

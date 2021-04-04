@@ -17,6 +17,7 @@ const SectionWrapper = styled.div`
 		padding: ${theme.padding.sectionWrapperDesktop};
 		padding-left: 5vw;
 		padding-right: 5vw;
+		margin-bottom: 100px;
 		img {
 			width: 60%;
 			max-height: 90%;

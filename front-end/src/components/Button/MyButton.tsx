@@ -13,8 +13,9 @@ const MyButton = styled.button`
 	outline: none;
 	margin-top: ${theme.margin.sectionWrapperMobile};
 	cursor: pointer;
-	transition: background-color 0.5s;
-	transition: border 0.12s;
+	// Note that border colour transitions do not work
+	/* transition: background-color 0.5s; */
+	/* transition: border 0.12s; */
 	&:hover {
 		border: 2px solid ${theme.color.text.highlight};
 		background-color: ${theme.color.text.highlight};
