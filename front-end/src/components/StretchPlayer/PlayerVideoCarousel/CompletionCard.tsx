@@ -8,12 +8,13 @@ interface CompletionCardProps {
 	timeTaken: number;
 }
 const CompletionCard: FunctionComponent<CompletionCardProps> = ({ timeTaken }): ReactElement => {
-	const { globalActions } = useContext(GlobalStateContext) as ContextType;
+	const { globalActions, globalState } = useContext(GlobalStateContext) as ContextType;
 
 	const restartHandler = (): void => {
+		const currentStretch = globalState.selectedStretchRoutine;
 		globalActions.resetStretches();
 		setTimeout(() => {
-			globalActions.setStretchRoutine('Breathe');
+			globalActions.setStretchRoutine(currentStretch);
 		}, 1000);
 		// <Redirect to="/activities" />;
 	};
