@@ -7,6 +7,7 @@ import meditate_sm from '../../../assets/MEDITATINGadjusted_sm.png';
 import stretch_sm from '../../../assets/STRETCHINGadjusted_sm.png';
 import why_sm from '../../../assets/WHYUSEMOODadjusted_sm.png';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const LandingPage: FunctionComponent = (): ReactElement => {
 	const Styledform = styled.form`
@@ -62,11 +63,11 @@ const LandingPage: FunctionComponent = (): ReactElement => {
 							variety of exercises to help you with that. Stretching keeps your muscles flexible, healthy
 							and strong, and lessens the risks of joint pain, strain and muscle damage.
 						</p>
-						<Styledform method="get" action="/activities" style={{ width: '100%' }}>
+						<Link to="/activities" style={{ width: '100%' }}>
 							<MyButton dark type="submit">
 								Start Stretching
 							</MyButton>
-						</Styledform>
+						</Link>
 					</div>
 				</SectionWrapper>
 
@@ -81,11 +82,11 @@ const LandingPage: FunctionComponent = (): ReactElement => {
 							complete immersion in a task where distractive thoughts cease – meditation helps you achieve
 							that.
 						</p>
-						<Styledform method="get" action="/activities" style={{ width: '100%' }}>
+						<Link to="/activities" style={{ width: '100%' }}>
 							<MyButton dark type="submit">
 								Open Your Mind
 							</MyButton>
-						</Styledform>
+						</Link>
 					</div>
 				</SectionWrapper>
 			</div>
