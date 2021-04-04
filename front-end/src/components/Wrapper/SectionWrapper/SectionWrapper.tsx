@@ -6,6 +6,7 @@ const SectionWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-bottom: 60px;
 	div {
 		display: flex;
 		flex-direction: column;
@@ -16,6 +17,7 @@ const SectionWrapper = styled.div`
 		padding: ${theme.padding.sectionWrapperDesktop};
 		padding-left: 5vw;
 		padding-right: 5vw;
+		margin-bottom: 100px;
 		img {
 			width: 60%;
 			max-height: 90%;

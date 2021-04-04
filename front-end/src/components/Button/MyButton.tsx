@@ -12,6 +12,14 @@ const MyButton = styled.button`
 	border: 2px solid #6c5bb1;
 	outline: none;
 	margin-top: ${theme.margin.sectionWrapperMobile};
+	cursor: pointer;
+	// Note that border colour transitions do not work
+	/* transition: background-color 0.5s; */
+	/* transition: border 0.12s; */
+	&:hover {
+		border: 2px solid ${theme.color.text.highlight};
+		background-color: ${theme.color.text.highlight};
+	}
 	@media (min-width: 768px) {
 		margin-top: ${theme.margin.sectionWrapperDesktop};
 		margin-left: 0px;

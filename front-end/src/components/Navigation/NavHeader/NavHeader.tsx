@@ -3,16 +3,26 @@ import styled from 'styled-components';
 import theme from '../../Theme/theme';
 import { NavSideMenu } from '../NavSideMenu';
 import { HashLink as Link } from 'react-router-hash-link';
+import bp from '../../Theme/breakpoints';
 
 const Logo = styled.div`
 	width: 130px;
 	height: 38px;
-	padding: 18px 30px;
+	padding: 18px 50px;
 	color: ${theme.color.main};
 	font-size: 2.2em;
 	font-weight: 700;
 	position: fixed;
-	@media (min-width: 768px) {
+	cursor: pointer;
+	transition: color 0.5s;
+	user-select: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&:hover {
+		color: ${theme.color.text.highlight};
+	}
+	@media ${bp.md} {
 		padding: 18px 0px;
 		font-size: 3em;
 	}
@@ -21,14 +31,18 @@ const Logo = styled.div`
 const StyledNavHeader = styled.div`
 	width: 100vw;
 	height: ${theme.height.navBarMobile};
-	display: block;
+	display: flex;
 	background: ${theme.color.background};
 	position: fixed;
+	a {
+		font-size: 0.73em;
+	}
+	z-index: 100;
 	ul {
 		display: none;
 	}
-	@media (min-width: 768px) {
-		padding: 10px 10vw 20px 10vw;
+	@media ${bp.sm} {
+		padding: 20px 10vw 10px 10vw;
 		height: ${theme.height.navBarDesktop};
 		& #sideMenu {
 			display: none;
@@ -39,7 +53,6 @@ const StyledNavHeader = styled.div`
 			justify-content: flex-end;
 			width: 60%;
 			margin: auto;
-			padding-top: 15px;
 		}
 		li {
 			display: inline-block;
@@ -48,17 +61,54 @@ const StyledNavHeader = styled.div`
 		a {
 			text-decoration: none;
 			font-weight: 500;
-			font-size: 1.1em;
 			line-height: 1.6em;
 			color: ${theme.color.navBar};
+			transition: color 0.5s;
+			&:hover {
+				color: ${theme.color.text.highlight};
+			}
+		}
+	}
+	@media (min-width: 900px) {
+		a {
+			font-size: 0.96em !important;
+		}
+	}
+	@media ${bp.md} {
+		a {
+			font-size: 1.1em !important;
 		}
 	}
 `;
 
+const GetStartedLink = styled(Link)`
+	width: 180px;
+	padding: 10px 9px;
+	border-radius: 20px;
+	font-size: 1.2em;
+	font-weight: 500;
+	border: 2px solid;
+	/* border-color: #6c5bb1; */
+	outline: none;
+	margin-top: ${theme.margin.sectionWrapperMobile};
+	cursor: pointer;
+	transition: border-color 5s ease-out;
+	/* a {
+		color: ${theme.color.text.contrast} !important;
+	} */
+`;
+
 const NavHeader: FunctionComponent = () => {
+	// always scroll to top when they click on link that is meant to
+	const scrollToTop = (): void => {
+		window.scrollTo(0, 0);
+	};
+
 	return (
 		<StyledNavHeader>
-			<Logo>mood.</Logo>
+			<Link to="/" onClick={scrollToTop}>
+				<Logo>mood.</Logo>
+			</Link>
 			<div id="sideMenu">
 				<NavSideMenu />
 			</div>
@@ -70,10 +120,12 @@ const NavHeader: FunctionComponent = () => {
 					<Link to="/#why">Why use mood.?</Link>
 				</li>
 				<li>
-					<Link to="/activities">Exercises</Link>
+					<Link to="/#what-we-offer">What we offer</Link>
 				</li>
 				<li>
-					<Link to="/#team">The team</Link>
+					<GetStartedLink to="/activities" onClick={scrollToTop}>
+						Get Started
+					</GetStartedLink>
 				</li>
 			</ul>
 		</StyledNavHeader>
