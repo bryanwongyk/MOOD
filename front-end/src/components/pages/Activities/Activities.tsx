@@ -31,7 +31,7 @@ const MeditationActivitiesContainer = styled(ActivitiesContainer)`
 	margin: 0;
 	background-size: cover;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	overflow-x: hidden;
 	max-height: 1100px;
 	@media ${bp.sm} {
@@ -48,8 +48,8 @@ const Activities: FunctionComponent = (): ReactElement => {
 
 	// TEMPORARY HARD CODING OF ROUTINE
 	useEffect(() => {
-		globalActions.setStretchRoutine('Laid Off');
-		// globalActions.setMeditationRoutine('Laid Off');
+		// globalActions.setStretchRoutine('Laid Off');
+		globalActions.setMeditationRoutine('Laid Off');
 	}, []);
 
 	let content: any = null;
