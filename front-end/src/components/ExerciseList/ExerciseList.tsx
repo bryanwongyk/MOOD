@@ -32,7 +32,7 @@ const ExerciseList: FunctionComponent<ExerciseListProps> = ({ children }): React
 				'Looming deadlines can be stress and anxiety inducing, but it’s important to make time for breaks so you don’t burn out. This short meditation guide will help you take a breather and get back to your tasks feeling refreshed and energised.',
 		},
 		{
-			name: 'Laid off',
+			name: 'Laid Off',
 			content:
 				'It’s not you - it’s the economy. Every cloud comes with a silver lining and this is your chance to finally take a break before jumping back into the workforce. This meditation guide will help you relieve stress and tension, and get you motivated to get back into work, or help make the most of your well-deserved time off.',
 		},
@@ -46,11 +46,11 @@ const ExerciseList: FunctionComponent<ExerciseListProps> = ({ children }): React
 	let exercises;
 	if (children === 'Stretching') {
 		exercises = stretching.map(session => {
-			return <ExerciseSummary name={session.name} content={session.content} category={children} />;
+			return <ExerciseSummary name={session.name} content={session.content} type={children} />;
 		});
 	} else if (children === 'Meditating') {
 		exercises = meditating.map(session => {
-			return <ExerciseSummary name={session.name} content={session.content} category={children} />;
+			return <ExerciseSummary name={session.name} content={session.content} type={children} />;
 		});
 	}
 

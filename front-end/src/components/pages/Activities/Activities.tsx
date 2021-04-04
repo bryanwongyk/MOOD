@@ -1,14 +1,14 @@
-import { FunctionComponent, ReactElement, useContext, useEffect } from 'react';
+import { FunctionComponent, ReactElement, useContext } from 'react';
 import bp from '../../Theme/breakpoints';
 import { StretchPlayer } from '../../StretchPlayer';
 import { MeditationPlayer } from '../../MeditationPlayer';
 import styled from 'styled-components';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
-import Spinner from '../../UI/Spinner';
+// import Spinner from '../../UI/Spinner';
 import CompletionCard from '../../StretchPlayer/PlayerVideoCarousel/CompletionCard';
 import ExerciseModal from '../../UI/ExerciseModal/ExerciseModal';
-// import ExerciseMenu from '../../Navigation/ExerciseMenu/ExerciseMenu';
+import ExerciseMenu from '../../Navigation/ExerciseMenu/ExerciseMenu';
 
 const ActivitiesContainer = styled.div`
 	margin: 0 auto;
@@ -43,12 +43,12 @@ const Activities: FunctionComponent = (): ReactElement => {
 
 	// }
 	// TODO: this routine selection should be dynamic. Right now, the default global state is set to Laid Off
-	const { globalState, globalActions } = useContext(GlobalStateContext) as ContextType;
+	const { globalState } = useContext(GlobalStateContext) as ContextType;
 
 	// TEMPORARY HARD CODING OF ROUTINE
-	useEffect(() => {
-		globalActions.setMeditationRoutine('Deadlines');
-	}, [globalState.selectedMeditationRoutine, globalState.selectedStretchRoutine]);
+	// useEffect(() => {
+	// 	globalActions.setMeditationRoutine('Deadlines');
+	// }, [globalState.selectedMeditationRoutine, globalState.selectedStretchRoutine]);
 
 	let content: any = null;
 	if (!!globalState.selectedStretchRoutine) {
@@ -73,7 +73,7 @@ const Activities: FunctionComponent = (): ReactElement => {
 			</MeditationActivitiesContainer>
 		);
 	} else {
-		content = <Spinner />;
+		content = <ExerciseMenu />;
 	}
 
 	return content;

@@ -17,15 +17,14 @@ interface ExerciseListProps {
 	name: string;
 	type: string;
 	content: string;
-	category: string;
 }
 
 const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, type, content }): ReactElement => {
 	const { globalState, globalActions } = useContext(GlobalStateContext) as ContextType;
 	console.log(globalState.selectedExerciseFilter);
-  let imgsrc;
+	let imgsrc;
 	if (type === 'Stretching') {
-		if (name === 'Laid off') {
+		if (name === 'Laid Off') {
 			imgsrc = stretchingLaidoff;
 		} else if (name === 'Breath') {
 			imgsrc = breath;
@@ -35,7 +34,7 @@ const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, type, con
 	} else if (type === 'Meditating') {
 		if (name === 'Deadlines') {
 			imgsrc = deadline;
-		} else if (name === 'Laid off') {
+		} else if (name === 'Laid Off') {
 			imgsrc = meditateLaidOff;
 		} else if (name === 'Tension') {
 			imgsrc = meditateTension;
