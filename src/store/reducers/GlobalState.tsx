@@ -14,6 +14,7 @@ interface initialStateType {
 	selectedMeditationRoutine: null | string;
 	selectedExerciseFilter: null | string;
 	showStretchOpening: boolean;
+	setSpinner: boolean;
 }
 
 const initialState: initialStateType = {
@@ -27,6 +28,7 @@ const initialState: initialStateType = {
 	selectedMeditationRoutine: null,
 	selectedExerciseFilter: null,
 	showStretchOpening: true,
+	setSpinner: false,
 };
 
 const GlobalStateContext = React.createContext<ContextType | null>(null);
@@ -182,6 +184,12 @@ const GlobalStateProvider = ({ children }): React.ReactElement => {
 		setStretchOpening: newValue => {
 			dispatch({
 				type: actionTypes.SET_STRETCH_OPENING,
+				newValue: newValue,
+			});
+		},
+		setSpinner: newValue => {
+			dispatch({
+				type: actionTypes.SET_SPINNER,
 				newValue: newValue,
 			});
 		},

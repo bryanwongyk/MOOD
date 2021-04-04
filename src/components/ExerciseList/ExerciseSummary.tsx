@@ -44,8 +44,7 @@ interface ExerciseListProps {
 }
 
 const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, type, content }): ReactElement => {
-	const { globalState, globalActions } = useContext(GlobalStateContext) as ContextType;
-	console.log(globalState.selectedExerciseFilter);
+	const { globalActions } = useContext(GlobalStateContext) as ContextType;
 	let imgsrc;
 	let disabled = false;
 	if (type === 'Stretching') {

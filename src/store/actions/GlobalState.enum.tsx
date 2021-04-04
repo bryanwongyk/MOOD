@@ -10,6 +10,7 @@ enum GlobalStateActions {
 	SET_EXERCISE_FILTER,
 	RESET_ALL,
 	SET_STRETCH_OPENING,
+	SET_SPINNER,
 }
 
 export default GlobalStateActions;

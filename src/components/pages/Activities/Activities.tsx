@@ -5,7 +5,7 @@ import { MeditationPlayer } from '../../MeditationPlayer';
 import styled from 'styled-components';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
-// import Spinner from '../../UI/Spinner';
+import Spinner from '../../UI/Spinner';
 import CompletionCard from '../../StretchPlayer/PlayerVideoCarousel/CompletionCard';
 import OpeningCard from '../../StretchPlayer/PlayerVideoCarousel/OpeningCard';
 import ExerciseModal from '../../UI/ExerciseModal/ExerciseModal';
@@ -52,7 +52,6 @@ const Activities: FunctionComponent = (): ReactElement => {
 	// }, [globalState.selectedMeditationRoutine, globalState.selectedStretchRoutine]);
 
 	let content: any = null;
-	console.log(globalState.selectedStretchRoutine, globalState.stretchComplete, globalState.showStretchOpening);
 	if (!!globalState.selectedStretchRoutine) {
 		if (!!globalState.stretchComplete) {
 			content = (
@@ -91,6 +90,8 @@ const Activities: FunctionComponent = (): ReactElement => {
 				<MeditationPlayer routine={globalState.selectedMeditationRoutine} />
 			</MeditationActivitiesContainer>
 		);
+	} else if (globalState.setSpinner) {
+		content = <Spinner />;
 	} else {
 		content = <ExerciseMenu />;
 	}

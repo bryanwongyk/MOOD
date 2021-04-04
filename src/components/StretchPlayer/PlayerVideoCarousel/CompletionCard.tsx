@@ -30,8 +30,10 @@ const CompletionCard: FunctionComponent<CompletionCardProps> = ({ timeTaken }): 
 	const restartHandler = (): void => {
 		const currentStretch = globalState.selectedStretchRoutine;
 		globalActions.resetStretches();
+		globalActions.setSpinner(true);
 		setTimeout(() => {
 			globalActions.setStretchRoutine(currentStretch);
+			globalActions.setSpinner(false);
 		}, 1000);
 		// <Redirect to="/activities" />;
 	};
