@@ -71,12 +71,14 @@ const Activities: FunctionComponent = (): ReactElement => {
 			if (globalState.showStretchOpening) {
 				content = (
 					<ActivitiesContainer>
+						<ExerciseModal />
 						<OpeningCard />
 					</ActivitiesContainer>
 				);
 			} else {
 				content = (
 					<ActivitiesContainer>
+						<ExerciseModal />
 						<StretchPlayer routine={globalState.selectedStretchRoutine} />
 					</ActivitiesContainer>
 				);
