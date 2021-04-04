@@ -5,6 +5,7 @@ import { FooterText } from 'components/Text/FooterText';
 import styled from 'styled-components';
 import theme from '../Theme/theme';
 import bp from '../Theme/breakpoints';
+import { Link } from 'react-router-dom';
 
 const Logo = styled(Styledh1)`
 	cursor: pointer;
@@ -27,9 +28,16 @@ const FooterWrapper = styled(SectionWrapper)`
 `;
 
 const Footer: FunctionComponent = (): ReactElement => {
+	// always scroll to top when they click on link that is meant to
+	const scrollToTop = (): void => {
+		window.scrollTo(0, 0);
+	};
+
 	return (
 		<FooterWrapper id="team">
-			<Logo id="footerHeading">mood.</Logo>
+			<Link to="/" onClick={scrollToTop} style={{ textDecoration: 'none' }}>
+				<Logo id="footerHeading">mood.</Logo>
+			</Link>
 			<FooterText>
 				<p>
 					<b>Team Bryan “The Rock” Wongson</b>
