@@ -1,6 +1,14 @@
 import React, { FunctionComponent, ReactElement } from 'react';
 import { NavHeader } from '../NavHeader';
-import { NavSideMenu } from '../NavSideMenu';
+import theme from '../../Theme/theme';
+import styled from 'styled-components';
+import { MainWrapper } from 'components/Wrapper/MainWrapper';
+import { Footer } from 'components/Footer';
+
+const StyledLayout = styled.div`
+	background: ${theme.color.background};
+	width: 100%;
+`;
 
 interface LayoutProps {
 	children: React.ReactNode;
@@ -9,9 +17,12 @@ interface LayoutProps {
 const Layout: FunctionComponent<LayoutProps> = ({ children }): ReactElement => {
 	return (
 		<>
-			<NavHeader />
-			<NavSideMenu />
-			<main>{children}</main>
+			<StyledLayout>
+				<NavHeader />
+				<MainWrapper>{children}</MainWrapper>
+				<button onClick={() => globalActions.testAction()}>test button</button>
+				<Footer></Footer>
+			</StyledLayout>
 		</>
 	);
 };
