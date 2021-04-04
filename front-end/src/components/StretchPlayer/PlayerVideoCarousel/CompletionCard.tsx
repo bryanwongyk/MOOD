@@ -11,9 +11,10 @@ const CompletionCard: FunctionComponent<CompletionCardProps> = ({ timeTaken }): 
 	const { globalActions, globalState } = useContext(GlobalStateContext) as ContextType;
 
 	const restartHandler = (): void => {
+		const currentStretch = globalState.selectedStretchRoutine;
 		globalActions.resetStretches();
 		setTimeout(() => {
-			globalActions.setStretchRoutine(globalState.selectedStretchRoutine);
+			globalActions.setStretchRoutine(currentStretch);
 		}, 1000);
 		// <Redirect to="/activities" />;
 	};

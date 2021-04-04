@@ -63,7 +63,6 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 	// const [completedRoutine, setCompletedRoutine] = useState(false);
 
 	const [interval, setInterval] = useState(globalState.cardIntervals[currentStretch]);
-
 	// iterate through the stretches in the given routine
 	const currentRoutineData = data[routine];
 	// avoid cards from being re-calculated unless they change.
