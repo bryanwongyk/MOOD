@@ -48,9 +48,8 @@ const Activities: FunctionComponent = (): ReactElement => {
 
 	// TEMPORARY HARD CODING OF ROUTINE
 	useEffect(() => {
-		// globalActions.setStretchRoutine('Laid Off');
-		globalActions.setMeditationRoutine('Laid Off');
-	}, []);
+		globalActions.setMeditationRoutine('Deadlines');
+	}, [globalState.selectedMeditationRoutine, globalState.selectedStretchRoutine]);
 
 	let content: any = null;
 	if (!!globalState.selectedStretchRoutine) {
