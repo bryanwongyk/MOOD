@@ -21,6 +21,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: triceps,
 				imgDescription: 'Tricep Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Raise both arms and bend them behind your head.',
 					'Use left hand to pull the right elbow down towards your head.',
@@ -33,6 +34,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: triceps,
 				imgDescription: 'Tricep Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Raise both arms and bend them behind your head.',
 					'Use right hand to pull the left elbow down towards your head.',
@@ -45,6 +47,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: overHeadReach,
 				imgDescription: 'Latissimus Stretch / Overhead Reach',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Extend your right arm overhead.',
 					'Reach over towards the opposite side. You can use your left hand to hold your wrist to deepen the stretch.',
@@ -57,6 +60,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: overHeadReach,
 				imgDescription: 'Latissimus Stretch / Overhead Reach',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Extend your left arm overhead.',
 					'Reach over towards the opposite side. You can use your left hand to hold your wrist to deepen the stretch.',
@@ -69,6 +73,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: upperBodyAndArm,
 				imgDescription: 'Upper Body and Arm Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Place your arms over above your head and clasp your hands together with palms facing outward.',
 					'Push your arms up and extend from your shoulders.',
@@ -81,6 +86,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: pectoralis,
 				imgDescription: 'Pectoralis Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Extend your arms in front of you and angle your back forwards.',
 					'Lower your head in line with your arms.',
@@ -93,6 +99,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: rhomboid,
 				imgDescription: 'Rhomboid Upper Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Start by placing both feet flat on the ground in front of you.',
 					'Cross your right leg over your left leg and place your left hand on your left knee.',
@@ -107,6 +114,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: rhomboid,
 				imgDescription: 'Rhomboid Upper Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Start by placing both feet flat on the ground in front of you.',
 					'Cross your left leg over your right leg and place your right hand on your left knee.',
@@ -121,6 +129,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: hipAndKneeFlexion,
 				imgDescription: 'Hip and Knee Flexion Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Sit forward on a chair and lean back. Your legs should be slightly apart and on the floor past your knees.',
 					'Clasp both hands on your right knee and pull towards your chest.',
@@ -133,6 +142,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: hipAndKneeFlexion,
 				imgDescription: 'Hip and Knee Flexion Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Sit forward on a chair and lean back. Your legs should be slightly apart and on the floor past your knees.',
 					'Clasp both hands on your left knee and pull towards your chest.',
@@ -145,6 +155,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: hamstrings,
 				imgDescription: 'Hamstring Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Extend your legs outward with feet flat and toes pointed up.',
 					'Extend your arms and reach forward towards your toes.',
@@ -157,6 +168,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: hamstrings,
 				imgDescription: 'Hamstring Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Extend your legs outward with feet flat and toes pointed up.',
 					'Extend your arms and reach forward towards your toes.',
@@ -165,10 +177,10 @@ const routineRawData = {
 			},
 			{
 				id: 13,
-				name: 'Shoulder Shrug',
+				name: 'Shoulder Shrug + Rotations',
 				timeTakenMilliseconds: 60000,
 				imgSrc: shoulderShrug,
-				imgDescription: 'Shoulder Shrug',
+				imgDescription: 'Shoulder Shrug + Rotations',
 				stretchInstructions: [
 					'Raise both shoulders up and down 10 times.',
 					'Rotate your shoulders backwards in a circular motion 10 times.',
@@ -181,6 +193,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: neck,
 				imgDescription: 'Neck Stretches',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Relax your body and tilt your head forward.',
 					'Slowly roll towards your right and hold for 30 seconds. You may also use your right hand to pull your head forward to feel a deeper stretch.',
@@ -192,6 +205,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: neck,
 				imgDescription: 'Neck Stretches',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Relax your body and tilt your head forward.',
 					'Slowly roll towards your left and hold for 30 seconds. You may also use your left hand to pull your head forward to feel a deeper stretch.',
@@ -203,6 +217,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: upperTrap,
 				imgDescription: 'Upper Trap Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Sit straight and put your right hand up to your head. Pull your head towards your right shoulder until you feel a light stretch.',
 					'Hold pose for 30 seconds.',
@@ -214,6 +229,7 @@ const routineRawData = {
 				timeTakenMilliseconds: 30000,
 				imgSrc: upperTrap,
 				imgDescription: 'Upper Trap Stretch',
+				imgExtraDesc: 'The above demonstration is on loop. Hold your stretch.',
 				stretchInstructions: [
 					'Sit straight and put your left hand up to your head. Pull your head towards your left shoulder until you feel a light stretch.',
 					'Hold pose for 30 seconds.',

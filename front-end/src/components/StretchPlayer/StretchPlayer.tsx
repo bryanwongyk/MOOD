@@ -86,6 +86,7 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 						id={stretch.id}
 						imgSrc={stretch.imgSrc}
 						imgAlt={stretch.imgDescription}
+						imgExtraDesc={stretch.imgExtraDesc}
 						stretchInstructions={stretch.stretchInstructions}
 						timeInterval={stretch.timeTakenMilliseconds}
 					/>

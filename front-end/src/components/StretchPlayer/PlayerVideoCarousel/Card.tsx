@@ -20,6 +20,7 @@ interface CardProps {
 	name: string;
 	imgSrc?: string;
 	imgAlt?: string;
+	imgExtraDesc?: string;
 	stretchInstructions: string[];
 	timeInterval: number;
 }
@@ -29,6 +30,7 @@ const Card: FunctionComponent<CardProps> = ({
 	name,
 	imgSrc,
 	imgAlt,
+	imgExtraDesc,
 	stretchInstructions,
 	timeInterval,
 }): ReactElement => {
@@ -42,6 +44,9 @@ const Card: FunctionComponent<CardProps> = ({
 				<Timer initialTime={initialTime} />
 				<h3>{name}</h3>
 				<img src={imgSrc} alt={imgAlt} />
+				<p>
+					<em>{imgExtraDesc}</em>
+				</p>
 				<ExtendedOrderedList>
 					{stretchInstructions.map((instruction, instructionIndex) => (
 						<li key={instructionIndex}>{instruction}</li>
