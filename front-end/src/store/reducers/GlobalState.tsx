@@ -74,6 +74,11 @@ const reducer = (state, action): any => {
 				stretchComplete: false,
 				selectedStretchRoutine: null,
 			};
+		case actionTypes.SET_MEDITATION_ROUTINE:
+			return {
+				...state,
+				selectedMeditationRoutine: action.selectedMeditationRoutine,
+			};
 		default: {
 			console.error(`Unhandled action type: ${action.type}`);
 		}
@@ -124,6 +129,12 @@ const GlobalStateProvider = ({ children }): React.ReactElement => {
 		resetStretches: () => {
 			dispatch({
 				type: actionTypes.RESET_STRETCHES,
+			});
+		},
+		setMeditationRoutine: selectedMeditationRoutine => {
+			dispatch({
+				type: actionTypes.SET_MEDITATION_ROUTINE,
+				selectedMeditationRoutine: selectedMeditationRoutine,
 			});
 		},
 	};

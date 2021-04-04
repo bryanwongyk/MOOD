@@ -1,6 +1,7 @@
 import { FunctionComponent, ReactElement, useContext, useEffect } from 'react';
 import bp from '../../Theme/breakpoints';
 import { StretchPlayer } from '../../StretchPlayer';
+import { MeditationPlayer } from '../../MeditationPlayer';
 import styled from 'styled-components';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
@@ -23,18 +24,28 @@ const Activities: FunctionComponent = (): ReactElement => {
 
 	// TEMPORARY HARD CODING OF ROUTINE
 	useEffect(() => {
-		globalActions.setStretchRoutine('Breathe');
+		// globalActions.setStretchRoutine('Breathe');
+		globalActions.setMeditationRoutine('Laid Off');
 	}, []);
 
-	return globalState.selectedStretchRoutine ? (
-		<ActivitiesContainer>
-			{!!globalState.selectedStretchRoutine ? (
+	let content: any = null;
+	if (!!globalState.selectedStretchRoutine) {
+		content = (
+			<ActivitiesContainer>
 				<StretchPlayer routine={globalState.selectedStretchRoutine} />
-			) : null}
-		</ActivitiesContainer>
-	) : (
-		<Spinner />
-	);
+			</ActivitiesContainer>
+		);
+	} else if (!!globalState.selectedMeditationRoutine) {
+		content = (
+			<ActivitiesContainer>
+				<MeditationPlayer routine={globalState.selectedMeditationRoutine} />
+			</ActivitiesContainer>
+		);
+	} else {
+		content = <Spinner />;
+	}
+
+	return content;
 };
 
 export default Activities;
