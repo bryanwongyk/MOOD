@@ -1,30 +1,53 @@
-import { FunctionComponent, ReactElement } from 'react';
-import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import IconButton from '@material-ui/core/IconButton';
-import AppsIcon from '@material-ui/icons/Apps';
-import theme from '../Theme/theme';
+import React, { FunctionComponent, ReactElement } from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import ExerciseList from '../ExerciseList/ExerciseList';
+// import theme from '../Theme/theme';
 
-const Modal: FunctionComponent = (): ReactElement => {
-	const [open, setOpen] = React.useState(false);
-	const handleClickOpen = (): void => {
-		setOpen(true);
-	};
+interface TabPanelProps {
+	children?: React.ReactNode;
+	index: any;
+	value: any;
+}
 
-	const handleClose = (): void => {
-		setOpen(false);
-	};
-
+const TabPanel: FunctionComponent<TabPanelProps> = ({ children, value, index, ...other }) => {
 	return (
-		<div>
-			<IconButton color="inherit" onClick={handleClickOpen}>
-				<AppsIcon style={{ color: theme.color.main }} />
-			</IconButton>
-			<Dialog onClose={handleClose} open={open}>
-				<div>test</div>
-			</Dialog>
+		<div role="tabpanel" hidden={value !== index} {...other}>
+			{value === index && (
+				<div>
+					<p>{children}</p>
+				</div>
+			)}
 		</div>
 	);
 };
 
-export default Modal;
+const SimpleTabs: FunctionComponent = (): ReactElement => {
+	const [value, setValue] = React.useState(0);
+	const handleChange = (_event: React.ChangeEvent<any>, newValue: number): void => {
+		setValue(newValue);
+	};
+	return (
+		<div>
+			<AppBar position="static">
+				<Tabs value={value} onChange={handleChange}>
+					<Tab label="Stretching" />
+					<Tab label="Meditating" />
+				</Tabs>
+			</AppBar>
+			<TabPanel value={value} index={0}>
+				<ExerciseList>Stretching</ExerciseList>
+			</TabPanel>
+			<TabPanel value={value} index={1}>
+				<ExerciseList>Meditating</ExerciseList>
+			</TabPanel>
+		</div>
+	);
+};
+
+const Explorer: FunctionComponent = (): ReactElement => {
+	return <SimpleTabs />;
+};
+
+export default Explorer;

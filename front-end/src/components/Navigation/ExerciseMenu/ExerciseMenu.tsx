@@ -1,13 +1,24 @@
 import { FunctionComponent, ReactElement } from 'react';
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import AppsIcon from '@material-ui/icons/Apps';
 import theme from '../../Theme/theme';
 import styled from 'styled-components';
+import Explorer from '../../Explorer/Explorer';
+
+const CloseButton = styled.button``;
 
 const ExerciseMenu: FunctionComponent = (): ReactElement => {
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
+
+	useEffect(() => {
+		if (window.innerWidth < 728) {
+			setOpen(true);
+		}
+	}, []);
+
 	const handleClickOpen = (): void => {
 		setOpen(true);
 	};
@@ -28,8 +39,13 @@ const ExerciseMenu: FunctionComponent = (): ReactElement => {
 				</IconButton>
 			</StyledIconButton>
 			<Dialog onClose={handleClose} open={open}>
-				<div>test</div>
+				<div>
+					<Explorer />
+				</div>
 			</Dialog>
+			<CloseButton onClick={handleClose}>
+				<CloseIcon />
+			</CloseButton>
 		</>
 	);
 };

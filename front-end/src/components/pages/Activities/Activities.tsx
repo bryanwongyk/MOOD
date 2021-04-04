@@ -49,12 +49,14 @@ const Activities: FunctionComponent = (): ReactElement => {
 	if (!!globalState.selectedStretchRoutine) {
 		content = (
 			<ActivitiesContainer>
+				<ExerciseMenu />
 				<StretchPlayer routine={globalState.selectedStretchRoutine} />
 			</ActivitiesContainer>
 		);
 	} else if (!!globalState.selectedMeditationRoutine) {
 		content = (
 			<MeditationActivitiesContainer>
+				<ExerciseMenu />
 				<MeditationPlayer routine={globalState.selectedMeditationRoutine} />
 			</MeditationActivitiesContainer>
 		);
