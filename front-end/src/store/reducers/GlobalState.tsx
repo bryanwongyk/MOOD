@@ -1,23 +1,78 @@
 import React, { useReducer } from 'react';
 import { GlobalStateActions as actionTypes } from '../actions';
 import { ContextType } from '../../typings/storetype';
+import Card from '../../components/StretchPlayer/PlayerVideoCarousel/Card';
 
 interface initialStateType {
-	test: boolean;
+	cards: null | typeof Card;
+	cardIntervals: { [key: string]: number }; //https://stackoverflow.com/questions/47847561/typescript-type-for-object-with-unknown-keys-but-only-numeric-values
+	cardsLoaded: boolean;
+	cardShownId: null | number;
+	lastCardId: null | number;
+	stretchComplete: boolean;
+	selectedStretchRoutine: null | string;
 }
 
 const initialState: initialStateType = {
-	test: false,
+	cards: null,
+	cardIntervals: {},
+	cardsLoaded: false,
+	cardShownId: null,
+	lastCardId: null,
+	stretchComplete: false,
+	selectedStretchRoutine: null,
 };
 
 const GlobalStateContext = React.createContext<ContextType | null>(null);
 
 const reducer = (state, action): any => {
 	switch (action.type) {
-		case actionTypes.TEST_ACTION:
-			console.log('TEST_ACTION executed');
+		case actionTypes.SET_STRETCH_ROUTINE:
 			return {
 				...state,
+				selectedStretchRoutine: action.selectedStretchRoutine,
+			};
+		case actionTypes.SET_CARDS:
+			return {
+				...state,
+				cards: action.cards,
+				cardIntervals: action.cardIntervals,
+				cardsLoaded: action.cardsLoaded,
+				stretchComplete: false,
+			};
+		case actionTypes.SET_CARD_SHOWN_ID:
+			return {
+				...state,
+				cardShownId: action.cardShownId,
+			};
+		case actionTypes.SET_LAST_CARD_ID:
+			return {
+				...state,
+				lastCardId: action.lastCardId,
+			};
+		case actionTypes.SET_STRETCH_COMPLETE:
+			return {
+				...state,
+				stretchComplete: true,
+				cardIntervals: {},
+				cardShownId: null,
+				lastCardId: null,
+			};
+		case actionTypes.SET_STRETCH_INCOMPLETE:
+			return {
+				...state,
+				stretchComplete: false,
+			};
+		case actionTypes.RESET_STRETCHES:
+			return {
+				...state,
+				cards: null,
+				cardIntervals: {},
+				cardsLoaded: false,
+				cardShownId: null,
+				lastCardId: null,
+				stretchComplete: false,
+				selectedStretchRoutine: null,
 			};
 		default: {
 			console.error(`Unhandled action type: ${action.type}`);
@@ -30,8 +85,46 @@ const GlobalStateProvider = ({ children }): React.ReactElement => {
 	const [globalState, dispatch] = useReducer(reducer, initialState);
 
 	const globalActions = {
-		testAction: () => {
-			dispatch({ type: actionTypes.TEST_ACTION });
+		setStretchRoutine: selectedStretchRoutine => {
+			dispatch({
+				type: actionTypes.SET_STRETCH_ROUTINE,
+				selectedStretchRoutine: selectedStretchRoutine,
+			});
+		},
+		setCards: (cards, cardIntervals, cardsLoaded) => {
+			dispatch({
+				type: actionTypes.SET_CARDS,
+				cards: cards,
+				cardIntervals: cardIntervals,
+				cardsLoaded: cardsLoaded,
+			});
+		},
+		setCardShown: cardShownId => {
+			dispatch({
+				type: actionTypes.SET_CARD_SHOWN_ID,
+				cardShownId: cardShownId,
+			});
+		},
+		setLastCardId: lastCardId => {
+			dispatch({
+				type: actionTypes.SET_LAST_CARD_ID,
+				lastCardId: lastCardId,
+			});
+		},
+		setStretchComplete: () => {
+			dispatch({
+				type: actionTypes.SET_STRETCH_COMPLETE,
+			});
+		},
+		setStretchIncomplete: () => {
+			dispatch({
+				type: actionTypes.SET_STRETCH_INCOMPLETE,
+			});
+		},
+		resetStretches: () => {
+			dispatch({
+				type: actionTypes.RESET_STRETCHES,
+			});
 		},
 	};
 

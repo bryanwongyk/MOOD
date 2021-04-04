@@ -1,6 +1,4 @@
-import React, { FunctionComponent, ReactElement, useContext } from 'react';
-import { ContextType } from '../../../typings/storetype';
-import { GlobalStateContext } from '../../../store/reducers';
+import React, { FunctionComponent, ReactElement } from 'react';
 import { NavHeader } from '../NavHeader';
 import theme from '../../Theme/theme';
 import styled from 'styled-components';
@@ -17,7 +15,6 @@ interface LayoutProps {
 }
 
 const Layout: FunctionComponent<LayoutProps> = ({ children }): ReactElement => {
-	const { globalActions } = useContext(GlobalStateContext) as ContextType;
 	return (
 		<>
 			<StyledLayout>
