@@ -57,10 +57,17 @@ const Activities: FunctionComponent = (): ReactElement => {
 		if (!!globalState.stretchComplete) {
 			content = (
 				<ActivitiesContainerNoHeight>
+					<ExerciseModal />
 					<CompletionCard timeTaken={10} />
 				</ActivitiesContainerNoHeight>
 			);
 		} else {
+			content = (
+				<ActivitiesContainer>
+					<ExerciseModal />
+					<StretchPlayer routine={globalState.selectedStretchRoutine} />
+				</ActivitiesContainer>
+			);
 			if (globalState.showStretchOpening) {
 				content = (
 					<ActivitiesContainer>

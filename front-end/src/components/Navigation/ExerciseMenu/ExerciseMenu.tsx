@@ -24,7 +24,7 @@ const GlobalCss = withStyles({
 			fontSize: '1.5rem',
 		},
 		'.MuiPaper-root': {
-			width: '80vw',
+			width: '70vw',
 		},
 		'.MuiTabs-centered': {
 			justifyContent: 'space-evenly',
@@ -45,9 +45,8 @@ const TabPanel: FunctionComponent<TabPanelProps> = ({ children, value, index, ..
 };
 
 const StyledDiv = styled.div`
-	Appbar Tabs &.MuiAppBar-colorPrimary {
-		background-color: ${theme.color.exerciseMenu.background};
-	}
+	margin: 0vh 15vw 0vh 15vw;
+	width: 100%;
 `;
 
 const SimpleTabs: FunctionComponent = (): ReactElement => {

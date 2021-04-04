@@ -2,12 +2,12 @@ import { FunctionComponent, ReactElement, useContext } from 'react';
 import Card from '@material-ui/core/Card';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import CardContent from '@material-ui/core/CardContent';
-import breath from '../../assets/breatheadjusted.png';
+import breath from '../../assets/breatheadjusted2grey.png';
 import stretchingLaidoff from '../../assets/laidoffadjusted.png';
-import stretchingTension from '../../assets/tensionadjusted.png';
+import stretchingTension from '../../assets/stretchingtensionadjustedgrey.png';
 import deadline from '../../assets/deadlinesadjusted.png';
-import meditateLaidOff from '../../assets/laidoff2adjusted.png';
-import meditateTension from '../../assets/tension2adjusted.png';
+import meditateLaidOff from '../../assets/meditationlaidoffadjustedgrey.png';
+import meditateTension from '../../assets/meditatingtensionadjustedgrey.png';
 import { ContextType } from '../../typings/storetype';
 import { GlobalStateContext } from '../../store/reducers';
 import theme from '../Theme/theme';
@@ -28,9 +28,9 @@ const StyledCard = styled(Card)`
 	background: ${theme.color.yellow};
 `;
 
-const DisabledImage = styled.img`
-	filter: grayscale(100%);
-`;
+// const DisabledImage = styled.img`
+// 	filter: grayscale(100%);
+// `;
 
 const StyledPara = styled.p`
 	width: 80%;
@@ -88,7 +88,7 @@ const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, type, con
 				}}
 			>
 				<CardContent>
-					{disabled ? <DisabledImage src={imgsrc} /> : <img src={imgsrc}></img>}
+					{disabled ? <img src={imgsrc} /> : <img src={imgsrc}></img>}
 					<h2>{name}</h2>
 					<StyledPara>{content}</StyledPara>
 				</CardContent>
