@@ -3,7 +3,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import ExerciseList from '../../ExerciseList/ExerciseList';
-// import theme from '../Theme/theme';
+// import styled from 'styled-components';
+// import theme from '../../Theme/theme';
 
 interface TabPanelProps {
 	children?: React.ReactNode;
@@ -23,6 +24,12 @@ const TabPanel: FunctionComponent<TabPanelProps> = ({ children, value, index, ..
 	);
 };
 
+// const StyledTab = styled.Tabs`
+// 	&.MuiAppBar-colorPrimary {
+// 		background-color: ${theme.color.exerciseMenu.background};
+// 	}
+// `;
+
 const SimpleTabs: FunctionComponent = (): ReactElement => {
 	const [value, setValue] = React.useState(0);
 	const handleChange = (_event: React.ChangeEvent<any>, newValue: number): void => {
@@ -31,7 +38,7 @@ const SimpleTabs: FunctionComponent = (): ReactElement => {
 	return (
 		<div>
 			<AppBar position="static">
-				<Tabs value={value} onChange={handleChange}>
+				<Tabs value={value} onChange={handleChange} centered={true}>
 					<Tab label="Stretching" />
 					<Tab label="Meditating" />
 				</Tabs>
