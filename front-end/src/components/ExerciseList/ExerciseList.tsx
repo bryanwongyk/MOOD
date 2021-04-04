@@ -1,5 +1,5 @@
 import { FunctionComponent, ReactElement } from 'react';
-import ExerciseSummary from './StretchingList';
+import ExerciseSummary from './ExerciseSummary';
 // import styled from 'styled-components';
 
 interface ExerciseListProps {

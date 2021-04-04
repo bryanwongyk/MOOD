@@ -15,7 +15,7 @@ const ExerciseSummary: FunctionComponent<ExerciseListProps> = ({ name, content }
 		<Card>
 			<ButtonBase
 				onClick={() => {
-					console.log('clicked');
+					console.log('test');
 				}}
 			>
 				<CardContent>
