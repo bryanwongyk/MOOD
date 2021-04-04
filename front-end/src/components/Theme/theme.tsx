@@ -23,6 +23,9 @@ const theme = {
 			background: 'linear-gradient(180deg, rgba(108, 91, 177, 0.9) 0%, rgba(232, 70, 110, 0.7) 100%)',
 		},
 		navBar: '#796CBB',
+		exerciseMenu: {
+			background: '#FAEBB5',
+		},
 	},
 	padding: {
 		sectionWrapperMobile: '30px',

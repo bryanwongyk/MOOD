@@ -8,6 +8,7 @@ import { GlobalStateContext } from '../../../store/reducers';
 import Spinner from '../../UI/Spinner';
 import CompletionCard from '../../StretchPlayer/PlayerVideoCarousel/CompletionCard';
 import ExerciseModal from '../../UI/ExerciseModal/ExerciseModal';
+// import ExerciseMenu from '../../Navigation/ExerciseMenu/ExerciseMenu';
 
 const ActivitiesContainer = styled.div`
 	margin: 0 auto;
