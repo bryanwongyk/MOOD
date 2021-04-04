@@ -13,6 +13,7 @@ interface initialStateType {
 	selectedStretchRoutine: null | string;
 	selectedMeditationRoutine: null | string;
 	selectedExerciseFilter: null | string;
+	showStretchOpening: boolean;
 }
 
 const initialState: initialStateType = {
@@ -25,6 +26,7 @@ const initialState: initialStateType = {
 	selectedStretchRoutine: null,
 	selectedMeditationRoutine: null,
 	selectedExerciseFilter: null,
+	showStretchOpening: true,
 };
 
 const GlobalStateContext = React.createContext<ContextType | null>(null);
@@ -77,6 +79,7 @@ const reducer = (state, action): any => {
 				lastCardId: null,
 				stretchComplete: false,
 				selectedStretchRoutine: null,
+				showStretchOpening: true,
 			};
 		case actionTypes.SET_MEDITATION_ROUTINE:
 			return {
@@ -90,6 +93,7 @@ const reducer = (state, action): any => {
 			};
 		case actionTypes.RESET_ALL:
 			return {
+				...state,
 				cards: null,
 				cardIntervals: {},
 				cardsLoaded: false,
@@ -99,6 +103,12 @@ const reducer = (state, action): any => {
 				selectedStretchRoutine: null,
 				selectedMeditationRoutine: null,
 				selectedExerciseFilter: null,
+				showStretchOpening: true,
+			};
+		case actionTypes.SET_STRETCH_OPENING:
+			return {
+				...state,
+				showStretchOpening: action.newValue,
 			};
 		default: {
 			console.error(`Unhandled action type: ${action.type}`);
@@ -167,6 +177,12 @@ const GlobalStateProvider = ({ children }): React.ReactElement => {
 		resetAll: () => {
 			dispatch({
 				type: actionTypes.RESET_ALL,
+			});
+		},
+		setStretchOpening: newValue => {
+			dispatch({
+				type: actionTypes.SET_STRETCH_OPENING,
+				newValue: newValue,
 			});
 		},
 	};

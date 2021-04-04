@@ -9,6 +9,7 @@ enum GlobalStateActions {
 	SET_MEDITATION_ROUTINE,
 	SET_EXERCISE_FILTER,
 	RESET_ALL,
+	SET_STRETCH_OPENING,
 }
 
 export default GlobalStateActions;

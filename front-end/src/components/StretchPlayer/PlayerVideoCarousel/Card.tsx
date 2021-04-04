@@ -17,7 +17,7 @@ const ExtendedArticle = styled.article`
 
 const TextDiv = styled.div`
 	margin: 0 auto;
-	width: 80vw;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
