@@ -1,8 +1,9 @@
 import stretchSample from '../../assets/stretchSample.jpeg';
 
 const routineRawData = {
-	Breathe: {
-		description: 'sample description',
+	'Laid Off': {
+		description:
+			'It’s not you - it’s the economy. Every cloud comes with a silver lining and this is your chance to finally take a break before jumping back into the workforce. This stretching guide will help you relieve stress and tension, and get you motivated to get back into work, or help make the most of your well-deserved time off.',
 		timeTakenMinutes: 10,
 		stretches: [
 			{
