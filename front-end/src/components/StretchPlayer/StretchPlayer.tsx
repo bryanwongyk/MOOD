@@ -25,7 +25,7 @@ const Header = styled.div`
 `;
 
 const HeaderTitle = styled.h1`
-	color: ${theme.color.h1};
+	color: ${theme.color.main};
 `;
 
 const HeaderSubTitle = styled.h2`
@@ -73,6 +73,7 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 		if (!!globalState.selectedStretchRoutine) {
 			const cardIntervals = {};
 			const cardIds: number[] = [];
+			// console.log(currentRoutineData);
 			const cards = currentRoutineData['stretches'].map(stretch => {
 				// store the time for each stretch
 				cardIntervals[stretch.id] = stretch.timeTakenMilliseconds;
@@ -102,7 +103,7 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 
 	// https://stackoverflow.com/questions/62760233/how-to-add-a-video-to-react-responsive-carousel-npm-package
 	const customRenderThumb = (): JSX.Element[] =>
-		data['Breathe']['stretches'].map(stretch => {
+		data['Laid Off']['stretches'].map(stretch => {
 			return <img key={stretch.id} src={stretch.imgSrc} alt={stretch.imgDescription} />;
 		});
 

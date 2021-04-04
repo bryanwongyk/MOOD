@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactElement, useContext } from 'react';
-import { Button } from '../../Button';
+import { MyButton } from '../../Button';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
 // import { Redirect } from 'react-router-dom';
@@ -8,12 +8,12 @@ interface CompletionCardProps {
 	timeTaken: number;
 }
 const CompletionCard: FunctionComponent<CompletionCardProps> = ({ timeTaken }): ReactElement => {
-	const { globalActions } = useContext(GlobalStateContext) as ContextType;
+	const { globalActions, globalState } = useContext(GlobalStateContext) as ContextType;
 
 	const restartHandler = (): void => {
 		globalActions.resetStretches();
 		setTimeout(() => {
-			globalActions.setStretchRoutine('Breathe');
+			globalActions.setStretchRoutine(globalState.selectedStretchRoutine);
 		}, 1000);
 		// <Redirect to="/activities" />;
 	};
@@ -24,7 +24,7 @@ const CompletionCard: FunctionComponent<CompletionCardProps> = ({ timeTaken }): 
 			<p>
 				You've stretched for {timeTaken} minutes and loosened up!
 				<br />
-				<Button onClick={restartHandler}>Start Again</Button>
+				<MyButton onClick={restartHandler}>Start Again</MyButton>
 				<br />
 				or select another routine from the explorer!
 			</p>
