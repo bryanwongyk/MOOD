@@ -13,12 +13,14 @@ const Logo = styled(Styledh1)`
 	user-select: none;
 	font-size: 2rem;
 	margin-bottom: 10px;
+	margin-top: 5vh;
 	text-align: center;
 	&:hover {
 		color: ${theme.color.text.highlight};
 	}
 	@media ${bp.sm} {
 		font-size: 3rem;
+		margin-top: 0;
 	}
 `;
 

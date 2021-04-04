@@ -6,11 +6,21 @@ import styled from 'styled-components';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
 import Spinner from '../../UI/Spinner';
+import CompletionCard from '../../StretchPlayer/PlayerVideoCarousel/CompletionCard';
 import ExerciseModal from '../../UI/ExerciseModal/ExerciseModal';
 
 const ActivitiesContainer = styled.div`
 	margin: 0 auto;
-	height: 100vh;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
+
+const ActivitiesContainerNoHeight = styled.div`
+	margin: 0 auto;
 	width: 100%;
 `;
 
@@ -38,18 +48,25 @@ const Activities: FunctionComponent = (): ReactElement => {
 
 	// TEMPORARY HARD CODING OF ROUTINE
 	useEffect(() => {
-		// globalActions.setStretchRoutine('Laid Off');
-		globalActions.setMeditationRoutine('Laid Off');
+		globalActions.setStretchRoutine('Laid Off');
+		// globalActions.setMeditationRoutine('Laid Off');
 	}, []);
 
 	let content: any = null;
 	if (!!globalState.selectedStretchRoutine) {
-		content = (
-			<ActivitiesContainer>
-				<ExerciseModal />
-				<StretchPlayer routine={globalState.selectedStretchRoutine} />
-			</ActivitiesContainer>
-		);
+		if (!!globalState.stretchComplete) {
+			content = (
+				<ActivitiesContainerNoHeight>
+					<CompletionCard timeTaken={10} />
+				</ActivitiesContainerNoHeight>
+			);
+		} else {
+			content = (
+				<ActivitiesContainer>
+					<StretchPlayer routine={globalState.selectedStretchRoutine} />
+				</ActivitiesContainer>
+			);
+		}
 	} else if (!!globalState.selectedMeditationRoutine) {
 		content = (
 			<MeditationActivitiesContainer>

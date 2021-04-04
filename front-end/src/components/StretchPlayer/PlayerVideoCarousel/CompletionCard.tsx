@@ -3,6 +3,23 @@ import { MyButton } from '../../Button';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
 // import { Redirect } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+	margin: 200px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+`;
+
+const StyledPara = styled.p`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+`;
 
 interface CompletionCardProps {
 	timeTaken: number;
@@ -20,16 +37,16 @@ const CompletionCard: FunctionComponent<CompletionCardProps> = ({ timeTaken }): 
 	};
 
 	return (
-		<div>
+		<StyledDiv>
 			<h4>Well Done!</h4>
-			<p>
+			<StyledPara>
 				You've stretched for {timeTaken} minutes and loosened up!
 				<br />
 				<MyButton onClick={restartHandler}>Start Again</MyButton>
 				<br />
 				or select another routine from the explorer!
-			</p>
-		</div>
+			</StyledPara>
+		</StyledDiv>
 	);
 };
 
