@@ -16,6 +16,7 @@ const theme = {
 		text: {
 			main: '#000000',
 			contrast: '#FFFFFF',
+			highlight: '#E97A95',
 		},
 		background: '#EFEDFB',
 		sideMenuBar: {

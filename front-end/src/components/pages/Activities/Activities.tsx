@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
 import Spinner from '../../UI/Spinner';
-import { ExerciseMenu } from 'components/Navigation/ExerciseMenu';
 
 const ActivitiesContainer = styled.div`
 	margin: 0 auto;

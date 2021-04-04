@@ -12,6 +12,12 @@ const Logo = styled.div`
 	font-size: 2.2em;
 	font-weight: 700;
 	position: fixed;
+	cursor: pointer;
+	transition: color 0.5s;
+	user-select: none;
+	&:hover {
+		color: ${theme.color.text.highlight};
+	}
 	@media (min-width: 768px) {
 		padding: 18px 0px;
 		font-size: 3em;
@@ -51,14 +57,25 @@ const StyledNavHeader = styled.div`
 			font-size: 1.1em;
 			line-height: 1.6em;
 			color: ${theme.color.navBar};
+			transition: color 0.5s;
+			&:hover {
+				color: ${theme.color.text.highlight};
+			}
 		}
 	}
 `;
 
 const NavHeader: FunctionComponent = () => {
+	// always scroll to top when they click on link that is meant to
+	const scrollToTop = (): void => {
+		window.scrollTo(0, 0);
+	};
+
 	return (
 		<StyledNavHeader>
-			<Logo>mood.</Logo>
+			<Link to="/" onClick={scrollToTop}>
+				<Logo>mood.</Logo>
+			</Link>
 			<div id="sideMenu">
 				<NavSideMenu />
 			</div>
@@ -70,7 +87,9 @@ const NavHeader: FunctionComponent = () => {
 					<Link to="/#why">Why use mood.?</Link>
 				</li>
 				<li>
-					<Link to="/activities">Exercises</Link>
+					<Link to="/activities" onClick={scrollToTop}>
+						Exercises
+					</Link>
 				</li>
 				<li>
 					<Link to="/#team">The team</Link>
