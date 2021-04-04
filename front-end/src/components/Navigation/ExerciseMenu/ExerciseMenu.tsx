@@ -44,7 +44,7 @@ const TabPanel: FunctionComponent<TabPanelProps> = ({ children, value, index, ..
 const StyledDiv = styled.div`
 	margin: 0 auto;
 	width: 100%;
-	max-width: 1440px;
+	max-width: 1000px;
 `;
 
 const SimpleTabs: FunctionComponent = (): ReactElement => {
