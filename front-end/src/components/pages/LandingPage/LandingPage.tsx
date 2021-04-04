@@ -42,14 +42,12 @@ const LandingPage: FunctionComponent = (): ReactElement => {
 				<div>
 					<Styledh1>Why use mood.?</Styledh1>
 					<p>
-						MOOD is an all-in-one mental wellness hub that is tailored specifically to tackling the issues
-						many face when working or studying from home.
-					</p>
-					<p>
-						Sometimes when our work, school and home environment blend into a single setting, we can find it
-						difficult to switch off. MOOD offers a variety of stretching, meditation and wellness guides to
-						help reduce stress, anxiety and increase mindfulness, which will help your home become a home
-						again.
+						Mood is an all-in-one wellness hub that is tailored specifically to tackling the issues or
+						frustrations many face when working or studying from home. Whether it’s an hour-long meeting
+						that could’ve just been an email, your boss who refuses to give you a pay rise, or Alan from
+						payroll who keeps miscalculating your pay - mood offers a variety of stretching, meditation and
+						wellness guides to help reduce stress, anxiety and increase mindfulness, to help you achieve zen
+						when you get back to work.
 					</p>
 				</div>
 			</SectionWrapper>
@@ -59,11 +57,12 @@ const LandingPage: FunctionComponent = (): ReactElement => {
 				<div>
 					<Styledh1>Stretching</Styledh1>
 					<p>
-						Sitting at a desk for work can mean your body becomes stiff from lack of moment. Over a
-						prolonged period, this can weaken your muscles. Stretching keeps your muscles flexible, healthy
-						and strong, and lessens the risks of joint pain, strain and muscle damage.
+						Sitting at a desk for work can mean your body becomes stiff from lack of moment. Stiff = bad.
+						Over a prolonged period, this can weaken your muscles. But don’t worry, we have a variety of
+						exercises to help you with that. Stretching keeps your muscles flexible, healthy and strong, and
+						lessens the risks of joint pain, strain and muscle damage.
 					</p>
-					<p>Stretching guides include: “My neck’s stiff” “My boss hates me” “I slept funny”</p>
+					<p>Stretching guides include: “My neck’s stiff”, “My boss hates me”, “I slept funny”</p>
 					<Styledform method="get" action="/activities" style={{ width: '100%' }}>
 						<MyButton dark type="submit">
 							Start Stretching
@@ -78,12 +77,9 @@ const LandingPage: FunctionComponent = (): ReactElement => {
 					<Styledh1>Meditating</Styledh1>
 					<p>
 						Meditation has been proven to help relieve stress, control anxiety and increase your focus and
-						attention. Especially important in work or study, a flow state is a complete immersion in a task
-						where distractive thoughts cease – meditation helps you achieve that.
-					</p>
-					<p>
-						Meditation guides include: “My coworkers never pull their weight” “I smell a promotion soon”
-						“Tomorrow’s paycheck is coming”
+						attention to what matters - and to help you unfocus on that unnecessary meeting, your stingy
+						boss and Alan from payroll. Especially important in work or study, a flow state is a complete
+						immersion in a task where distractive thoughts cease – meditation helps you achieve that.
 					</p>
 					<Styledform method="get" action="/activities" style={{ width: '100%' }}>
 						<MyButton dark type="submit">
