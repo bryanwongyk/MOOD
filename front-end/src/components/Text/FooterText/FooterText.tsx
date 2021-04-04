@@ -8,10 +8,10 @@ const FooterTextDiv = styled.div`
 	font-weight: 500;
 	margin: 0 auto;
 	text-align: center;
-	line-height: 10px;
 
 	a {
 		color: ${theme.color.main};
+		line-height: 10px;
 		text-decoration: none;
 		transition: color 0.5s;
 		&:hover {

@@ -15,6 +15,15 @@ const ExtendedArticle = styled.article`
 	align-items: center;
 `;
 
+const TextDiv = styled.div`
+	margin: 0 auto;
+	width: 80vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
+
 interface CardProps {
 	id: number;
 	name: string;
@@ -44,14 +53,16 @@ const Card: FunctionComponent<CardProps> = ({
 				<Timer initialTime={initialTime} />
 				<h3>{name}</h3>
 				<img src={imgSrc} alt={imgAlt} />
-				<p>
-					<em>{imgExtraDesc}</em>
-				</p>
-				<ExtendedOrderedList>
-					{stretchInstructions.map((instruction, instructionIndex) => (
-						<li key={instructionIndex}>{instruction}</li>
-					))}
-				</ExtendedOrderedList>
+				<TextDiv>
+					<p>
+						<em>{imgExtraDesc}</em>
+					</p>
+					<ExtendedOrderedList>
+						{stretchInstructions.map((instruction, instructionIndex) => (
+							<li key={instructionIndex}>{instruction}</li>
+						))}
+					</ExtendedOrderedList>
+				</TextDiv>
 			</ExtendedArticle>
 		);
 	}
@@ -64,11 +75,13 @@ const Card: FunctionComponent<CardProps> = ({
 				<h3>1s</h3>
 				<h3>{name}</h3>
 				<img src={imgSrc} alt={imgAlt} />
-				<ExtendedOrderedList>
-					{stretchInstructions.map((instruction, instructionIndex) => {
-						return <li key={instructionIndex}>{instruction}</li>;
-					})}
-				</ExtendedOrderedList>
+				<TextDiv>
+					<ExtendedOrderedList>
+						{stretchInstructions.map((instruction, instructionIndex) => {
+							return <li key={instructionIndex}>{instruction}</li>;
+						})}
+					</ExtendedOrderedList>
+				</TextDiv>
 			</ExtendedArticle>
 		);
 	}

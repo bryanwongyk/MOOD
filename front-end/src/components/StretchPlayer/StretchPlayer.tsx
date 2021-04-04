@@ -9,7 +9,7 @@ import data from './routineRawData';
 import { ContextType } from '../../typings/storetype';
 import { GlobalStateContext } from '../../store/reducers';
 import Card from './PlayerVideoCarousel/Card';
-import CompletionCard from './PlayerVideoCarousel/CompletionCard';
+// import CompletionCard from './PlayerVideoCarousel/CompletionCard';
 import Spinner from '../UI/Spinner';
 
 const Header = styled.div`
@@ -19,13 +19,19 @@ const Header = styled.div`
 
 	@media ${bp.xs} {
 		flex-direction: row;
-		justify-content: space-around;
+		justify-content: space-between;
 		align-items: center;
 	}
 `;
 
 const HeaderTitle = styled.h1`
 	color: ${theme.color.main};
+	@media ${bp.xs} {
+		margin-right: 10vw;
+	}
+	@media ${bp.md} {
+		margin-right: 30vw;
+	}
 `;
 
 const HeaderSubTitle = styled.h2`
@@ -41,8 +47,7 @@ const HeaderSubTitleHidden = styled(HeaderSubTitle)`
 `;
 
 const ExtendedCarousel = styled(Carousel)`
-	max-height: 500px;
-
+	height: 100%;
 	.carousel .slide img {
 		width: auto;
 		max-height: 500px;
@@ -93,7 +98,7 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 				);
 			});
 			// set completion card to final
-			cards.push(<CompletionCard key={cardIds.length} timeTaken={currentRoutineData['timeTakenMinutes']} />);
+			// cards.push(<CompletionCard key={cardIds.length} timeTaken={currentRoutineData['timeTakenMinutes']} />);
 			globalActions.setCards(cards, cardIntervals, true);
 			setInterval(cardIntervals[currentStretch]);
 			globalActions.setCardShown(currentStretch);
@@ -131,11 +136,11 @@ const StretchPlayer: FunctionComponent<StretchPlayerProps> = ({ routine }): Reac
 				<HeaderTitle>{globalState.selectedStretchRoutine}</HeaderTitle>
 				{!globalState.stretchComplete ? (
 					<HeaderSubTitle>
-						Stretch {globalState.cardShownId}/{globalState.cards.length - 1}
+						Stretch {globalState.cardShownId}/{globalState.cards.length}
 					</HeaderSubTitle>
 				) : (
 					<HeaderSubTitleHidden>
-						Stretch {globalState.cardShownId}/{globalState.cards.length - 1}
+						Stretch {globalState.cardShownId}/{globalState.cards.length}
 					</HeaderSubTitleHidden>
 				)}
 			</Header>

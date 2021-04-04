@@ -6,10 +6,20 @@ import styled from 'styled-components';
 import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
 import Spinner from '../../UI/Spinner';
+import CompletionCard from '../../StretchPlayer/PlayerVideoCarousel/CompletionCard';
 
 const ActivitiesContainer = styled.div`
 	margin: 0 auto;
-	height: 100vh;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
+
+const ActivitiesContainerNoHeight = styled.div`
+	margin: 0 auto;
 	width: 100%;
 `;
 
@@ -43,11 +53,20 @@ const Activities: FunctionComponent = (): ReactElement => {
 
 	let content: any = null;
 	if (!!globalState.selectedStretchRoutine) {
-		content = (
-			<ActivitiesContainer>
-				<StretchPlayer routine={globalState.selectedStretchRoutine} />
-			</ActivitiesContainer>
-		);
+		console.log(globalState);
+		if (!!globalState.stretchComplete) {
+			content = (
+				<ActivitiesContainerNoHeight>
+					<CompletionCard timeTaken={10} />
+				</ActivitiesContainerNoHeight>
+			);
+		} else {
+			content = (
+				<ActivitiesContainer>
+					<StretchPlayer routine={globalState.selectedStretchRoutine} />
+				</ActivitiesContainer>
+			);
+		}
 	} else if (!!globalState.selectedMeditationRoutine) {
 		content = (
 			<MeditationActivitiesContainer>
