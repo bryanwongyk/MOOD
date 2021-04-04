@@ -23,9 +23,6 @@ const GlobalCss = withStyles({
 			fontWeight: 700,
 			fontSize: '1.5rem',
 		},
-		'.MuiPaper-root': {
-			width: '70vw',
-		},
 		'.MuiTabs-centered': {
 			justifyContent: 'space-evenly',
 		},
@@ -45,8 +42,9 @@ const TabPanel: FunctionComponent<TabPanelProps> = ({ children, value, index, ..
 };
 
 const StyledDiv = styled.div`
-	margin: 0vh 15vw 0vh 15vw;
+	margin: 0 auto;
 	width: 100%;
+	max-width: 1440px;
 `;
 
 const SimpleTabs: FunctionComponent = (): ReactElement => {
