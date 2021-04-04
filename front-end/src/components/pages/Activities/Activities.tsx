@@ -53,7 +53,6 @@ const Activities: FunctionComponent = (): ReactElement => {
 
 	let content: any = null;
 	if (!!globalState.selectedStretchRoutine) {
-		console.log(globalState);
 		if (!!globalState.stretchComplete) {
 			content = (
 				<ActivitiesContainerNoHeight>
