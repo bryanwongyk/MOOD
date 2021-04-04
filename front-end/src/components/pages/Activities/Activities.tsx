@@ -7,6 +7,7 @@ import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
 // import Spinner from '../../UI/Spinner';
 import CompletionCard from '../../StretchPlayer/PlayerVideoCarousel/CompletionCard';
+import OpeningCard from '../../StretchPlayer/PlayerVideoCarousel/OpeningCard';
 import ExerciseModal from '../../UI/ExerciseModal/ExerciseModal';
 import ExerciseMenu from '../../Navigation/ExerciseMenu/ExerciseMenu';
 
@@ -51,6 +52,7 @@ const Activities: FunctionComponent = (): ReactElement => {
 	// }, [globalState.selectedMeditationRoutine, globalState.selectedStretchRoutine]);
 
 	let content: any = null;
+	console.log(globalState.selectedStretchRoutine, globalState.stretchComplete, globalState.showStretchOpening);
 	if (!!globalState.selectedStretchRoutine) {
 		if (!!globalState.stretchComplete) {
 			content = (
@@ -66,6 +68,19 @@ const Activities: FunctionComponent = (): ReactElement => {
 					<StretchPlayer routine={globalState.selectedStretchRoutine} />
 				</ActivitiesContainer>
 			);
+			if (globalState.showStretchOpening) {
+				content = (
+					<ActivitiesContainer>
+						<OpeningCard />
+					</ActivitiesContainer>
+				);
+			} else {
+				content = (
+					<ActivitiesContainer>
+						<StretchPlayer routine={globalState.selectedStretchRoutine} />
+					</ActivitiesContainer>
+				);
+			}
 		}
 	} else if (!!globalState.selectedMeditationRoutine) {
 		content = (
