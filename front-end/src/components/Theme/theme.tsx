@@ -27,7 +27,7 @@ const theme = {
 	padding: {
 		sectionWrapperMobile: '30px',
 		sectionWrapperDesktop: '15h',
-		mainWrapperDesktop: '20vh',
+		mainWrapperDesktop: '6%',
 	},
 	margin: {
 		sectionWrapperMobile: '10px',

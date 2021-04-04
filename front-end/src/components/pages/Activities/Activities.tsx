@@ -10,9 +10,7 @@ import Spinner from '../../UI/Spinner';
 const ActivitiesContainer = styled.div`
 	margin: 0 auto;
 	height: 100vh;
-	@media ${bp.sm} {
-		width: 80vw;
-	}
+	width: 100%;
 `;
 
 const MeditationActivitiesContainer = styled(ActivitiesContainer)`
@@ -21,13 +19,12 @@ const MeditationActivitiesContainer = styled(ActivitiesContainer)`
 	background-repeat: no-repeat;
 	margin: 0;
 	background-size: cover;
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	overflow-x: hidden;
 	max-height: 1100px;
 	@media ${bp.sm} {
 		margin: 0 auto;
-		width: 80vw;
 	}
 `;
 
