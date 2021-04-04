@@ -7,6 +7,7 @@ import { ContextType } from '../../../typings/storetype';
 import { GlobalStateContext } from '../../../store/reducers';
 import Spinner from '../../UI/Spinner';
 import CompletionCard from '../../StretchPlayer/PlayerVideoCarousel/CompletionCard';
+import ExerciseModal from '../../UI/ExerciseModal/ExerciseModal';
 
 const ActivitiesContainer = styled.div`
 	margin: 0 auto;
@@ -69,6 +70,7 @@ const Activities: FunctionComponent = (): ReactElement => {
 	} else if (!!globalState.selectedMeditationRoutine) {
 		content = (
 			<MeditationActivitiesContainer>
+				<ExerciseModal />
 				<MeditationPlayer routine={globalState.selectedMeditationRoutine} />
 			</MeditationActivitiesContainer>
 		);
