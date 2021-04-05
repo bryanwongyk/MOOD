@@ -29,7 +29,7 @@ Some specific challenges our team faced included the responsiveness of both mobi
 
 ## Accomplishments that we're proud of
 
-Bryan “The Rock” Wongson is most proud of how well everyone communicated, supported one another and worked together, despite the challenges in implementation and time constraints.
+The team is most proud of how well everyone communicated, supported one another and worked together, despite the challenges in implementation and time constraints.
 
 ## What we learned
 
