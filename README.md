@@ -7,6 +7,8 @@
   <br>
 </p>
 
+<p align="center"> This web application was built for Hackiethon 2021. </p>
+
 <br>
 
 ## Inspiration
@@ -43,3 +45,10 @@ We would love to continue building upon this application because we truly believ
 1. Clone the repository: `git clone https://github.com/bryanwyk/MOOD.git`
 2. Install the dependencies: `yarn install`
 3. Run the application: `yarn start`
+
+## Known issues
+- Unable to use routine selector modal to swap from a stretching routine to a meditation routine, but it works the other way around. Possible fixes include removing the StretchPlayer component entirely when swapping, and replacing it with the MeditationPlayer based on conditions, or re-routing the user to a new URL with route parameters so that it forces the Player components to re-render.
+- Refreshing the page leads to a 404 (issue with Netlify configuration).
+- First 'Get Started' link on the landing page leads to a 404 due to submit button adding a '?' to the end of the URL. Fix is to replace this with a react-router <Link> component.
+- Image in mobile menu not scaled correctly.
+- First stretch in stretching routine sometimes stays stuck at 0s. This may be an issue with the state management or how the browser is handling the application (since this is not an issue on mobile). One approach that could lead to a potential fix is to change how the stretches are displayed from a carousel relying on the global state to manually re-rendering the components.
