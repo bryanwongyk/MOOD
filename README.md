@@ -35,7 +35,7 @@ The team is most proud of how well everyone communicated, supported one another 
 
 Through this experience, we learned the importance of relying on each other's strengths, and managing scope and expectations iteratively. We also pushed our technical knowledge in learning how to use new front-end libraries, new technologies, and in building new types of components.
 
-What's next for mood. by Bryan 'The Rock' Wongson
+## What's next for mood. 
 We would love to continue building upon this application because we truly believe in the importance of self-care and just enjoying life!
 
 <br>
